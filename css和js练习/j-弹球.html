@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹球</title>
+	<style>
+		canvas{
+			border: solid #3E44B9 2px;
+			display: block;
+			margin: auto;
+			box-sizing: content-box;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas"></canvas>
+	<script>
+		var size=600;
+		var canvas=document.getElementById("canvas");
+		canvas.width=canvas.height=size;
+		var gtx=canvas.getContext("2d");
+		var ball={
+			r:15,
+			x:size/2+10,
+			y:size-50,
+			xSpeed:-2,
+			ySpeed:-2,
+			move:function(){
+				this.x=this.x+this.xSpeed;
+				this.y=this.y+this.ySpeed;
+			},
+			draw:function(){
+				gtx.beginPath();
+				gtx.arc(this.x,this.y,this.r,0,Math.PI*2);
+				gtx.fill();
+			},
+			check:function(){
+				if(this.x<this.r || this.x>size-this.r){
+					this.xSpeed=-this.xSpeed;
+				}
+				if(this.y<this.r){
+					this.ySpeed=-this.ySpeed;
+				}
+				if(this.y>size-this.r-panel.height){
+					if(this.x>=panel.x && this.x<=panel.x+panel.width){
+						this.ySpeed=-this.ySpeed;
+					}
+					else{
+						gameOver();
+					}
+				}
+			}
+		};
+		var panel={
+			height:10,
+			width:60,
+			x:size/2,//size/2-this.width/2,
+			y:size-10,//size-this.height,
+			draw:function(){
+				//gtx.fillStyle="blue";
+				gtx.fillRect(this.x,this.y,this.width,this.height);
+			},
+			move:function(direction){
+				if(direction==="left"){
+					if(this.x>0){
+						this.x-=10;
+					}
+				}
+				else{
+					if(this.x<size){
+						this.x+=10;
+					}
+				}
+			}
+		};
+		function gameOver(){
+			window.clearInterval(running);
+			gtx.font="60px serif";
+			gtx.textAlign="center";
+			gtx.textBaseline="middle";
+			gtx.fillText("Game Over",300,300);
+		}
+		var running=window.setInterval(function(){
+			gtx.clearRect(0,0,size,size);
+			ball.draw();
+			ball.move();
+			ball.check();
+			panel.draw();
+		},20);
+		window.addEventListener("keydown",function(event){
+			if(event.key==="ArrowRight"){
+				panel.move("right");
+			}
+			else{
+				panel.move("left");
+			}
+		});
+	</script>
+</body>
+</html>

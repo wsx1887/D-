@@ -1,0 +1,457 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>X4工厂计算</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		.selected-factory{
+			height: 200px;
+			resize:vertical;
+			overflow-y: auto;
+		}
+		caption{
+			caption-side: top;
+			color: crimson;
+			font-weight: bolder;
+			font-size: 1.5rem;
+			padding: 0;
+			padding-bottom: 0.5rem;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container-fluid" id="main">
+		<div id="config" class="bg-secondary text-white">
+			<label class="text-white ml-2">选项：</label>
+			<label title="允许需求比产出大">允许误差：</label>
+			<input type="text" value="0" style="width: 4rem" v-model="error" title="允许需求比产出大"/>
+			<button type="button" v-on:click="factoryListOEmpty" class="float-right mr-5">重置工厂</button>
+			<span style="vertical-align: middle">
+				<label class="ml-3 pl-1 btn-warning rounded-left">势力：</label>
+				<label class="btn-warning px-1 ml-n2">
+					<input type="radio" name="force" value="A" checked v-model="force"/>Argon
+				</label>
+				<label class=" btn-warning px-1 ml-n2">
+					<input type="radio" name="force" value="P" v-model="force"/>Paranid
+				</label>
+				<label class="btn-warning px-1 ml-n2 rounded-right">
+					<input type="radio" name="force" value="T" v-model="force"/>Teladi
+				</label>
+			</span>
+			<span class="ml-2" style="vertical-align: middle">
+				<label class="btn-warning px-1 rounded">
+					<input type="checkbox" id="checkcomputed" checked v-model="auto"/>自动计算工厂数量
+				</label>
+			</span>
+		</div>
+		<div id="selected-factory" v-bind:class="{'selected-factory':isPropertySupported('resize')}">
+			<table class="table table-striped table-hover table-sm">
+				<caption>计算结果：<span class="font-weight-light">（只能修改无产品需求的工厂个数，除非取消自动计算）</span></caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">产品名称</th>
+						<th scope="col">产品总产量/小时</th>
+						<th scope="col">产品总需求量/小时</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,key) in factoryListO" v-bind:key="key" v-if="d>0">
+						<td>{{key}}<span class="ml-1 badge badge-danger">{{getObyFactoryName(key).factoryType}}</span><button type="botton" class="text-muted ml-2 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(getObyFactoryName(key))" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(getObyFactoryName(key).product)[0]}}</td>
+						<td>{{productListO[Object.keys(getObyFactoryName(key).product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(getObyFactoryName(key).product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[key]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[key]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[key]>0?factoryListO[key]--:factoryListO[key]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<section>
+			<h4 class="text-danger mt-4">矿产需求信息/小时：</h4>
+			<ul class="list-inline bg-success">
+				<li class="list-inline-item" v-for="(mineral,key) in minerals" v-if="mineral>0">{{key}}:{{mineral}}</li>
+			</ul>
+		</section>
+		<hr/>
+		<div id="factroy-list">
+			<table class="table table-striped table-hover table-sm table-primary">
+				<caption>基础产品：</caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">产品名称</th>
+						<th scope="col">产品总产量/小时</th>
+						<th scope="col">产品总需求量/小时</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='基础产品'">
+						<td>{{d.name}}<button type="botton" class="text-muted ml-3 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(d)" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(d.product)[0]}}</td>
+						<td>{{productListO[Object.keys(d.product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(d.product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped table-hover table-sm table-success">
+				<caption>中间产品：</caption>
+				<thead>
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">产品名称</th>
+						<th scope="col">产品总产量/小时</th>
+						<th scope="col">产品总需求量/小时</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='中间产品'">
+						<td>{{d.name}}<button type="botton" class="text-muted ml-3 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(d)" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(d.product)[0]}}</td>
+						<td>{{productListO[Object.keys(d.product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(d.product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped table-hover table-sm table-info">
+				<caption>最终产品：</caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">产品名称</th>
+						<th scope="col">产品总产量/小时</th>
+						<th scope="col">产品总需求量/小时</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='最终产品'">
+						<td>{{d.name}}<button type="botton" class="text-muted ml-3 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(d)" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(d.product)[0]}}</td>
+						<td>{{productListO[Object.keys(d.product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(d.product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped table-hover table-sm table-warning">
+				<caption>食药业：</caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">产品名称</th>
+						<th scope="col">产品总产量/小时</th>
+						<th scope="col">产品总需求量/小时</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='食药业'">
+						<td>{{d.name}}<button type="botton" class="text-muted ml-3 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(d)" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(d.product)[0]}}</td>
+						<td>{{productListO[Object.keys(d.product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(d.product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped table-hover table-sm table-primary">
+				<caption>违法产品：</caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">产品名称</th>
+						<th scope="col">产品总产量/小时</th>
+						<th scope="col">产品总需求量/小时</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='违法产品'">
+						<td>{{d.name}}<button type="botton" class="text-muted ml-3 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(d)" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(d.product)[0]}}</td>
+						<td>{{productListO[Object.keys(d.product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(d.product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped table-hover table-sm table-success">
+				<caption>飞船制造维护：</caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col">工人总需求量/种港</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='飞船制造维护'">
+						<td>{{d.name}}</td>
+						<td></td>
+						<td></td>
+						<td>{{d.materials["工人"]*factoryListO[d.name]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped table-hover table-sm table-info mb-5">
+				<caption>居住区：</caption>
+				<thead >
+					<tr class="table-secondary">
+						<th scope="col">工厂名称</th>
+						<th scope="col">居住</th>
+						<th scope="col">工人总居住空间</th>
+						<th scope="col">工人总需求</th>
+						<th scope="col" style="width: 7.5rem">工厂个数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(d,index) in factoryData" v-bind:key="index" v-if="d.factoryType==='居住区'">
+						<td>{{d.name}}<button type="botton" class="text-muted ml-3 btn-outline-primary bg-transparent p-0" data-toggle="tooltip" data-html="true" data-placement="right" v-bind:title="getTitle(d)" style="font-size: 0.5rem;">工厂信息</button></td>
+						<td>{{Object.keys(d.product)[0]}}</td>
+						<td>{{productListO[Object.keys(d.product)[0]]}}</td>
+						<td>{{materialListO[Object.keys(d.product)[0]]}}</td>
+						<td class="p-0">
+							<input type="text" v-model="factoryListO[d.name]" style="width: 3rem"/>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]++">+1</button>
+							<button type="button" style="margin-left: -0.35rem" v-on:click="factoryListO[d.name]>0?factoryListO[d.name]--:factoryListO[d.name]">-1</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<script src="jquery-3.3.1.js"></script>
+	<script src="bootstrap.bundle.js"></script>
+	<script src="vue.js"></script>
+	<script src="factoryModel.js"></script>
+	<script>
+		var vm=new Vue({
+			el:'#main',
+			data:{
+				auto:true,
+				error:0,
+				force:'A',
+				factoryData:window.factoryCalculator.factoryModel.GetFactoryData(),
+				factoryListO:window.factoryCalculator.factoryModel.GetFactoryListO()
+			},
+			computed:{
+				productListO:function(){
+					var productListO={};
+					//for(var factoryName of Object.keys(this.factoryListO)){
+					for(var factoryName in this.factoryListO){
+						if(this.factoryListO[factoryName]>0){
+							var factoryObject=this.getObyFactoryName(factoryName);
+							if(!productListO[Object.keys(factoryObject.product)[0]]){
+								productListO[Object.keys(factoryObject.product)[0]]=this.factoryListO[factoryName]*Object.values(factoryObject.product)[0];
+							}
+							else{
+								productListO[Object.keys(factoryObject.product)[0]]+=this.factoryListO[factoryName]*Object.values(factoryObject.product)[0];
+							}
+						}
+					}
+					return productListO;
+				},
+				materialListO:function(){
+					var materialListO={};
+					//for(var factoryName of Object.keys(this.factoryListO)){
+					for(var factoryName in this.factoryListO){
+						if(this.factoryListO[factoryName]>0){
+							var factoryObject=this.getObyFactoryName(factoryName);
+							if(factoryObject.materials!=null){
+								//for(var materialName of Object.keys(factoryObject.materials)){
+								for(var materialName in factoryObject.materials){
+									if(!materialListO[materialName]){
+											materialListO[materialName]=factoryObject.materials[materialName]*	this.factoryListO[factoryName];
+									}
+									else{
+											materialListO[materialName]+=factoryObject.materials[materialName]	*this.factoryListO[factoryName];
+									}
+								}
+							}
+						}
+					}
+					return materialListO;
+				},
+				minerals:function(){
+					let minerals={"金属矿石":0,"硅":0,"甲烷":0,"氦":0,"氢":0,"冰":0};
+					for(let key in minerals){
+						minerals[key]=this.materialListO[key] || 0;
+					}
+					return minerals;
+				}
+			},
+			watch:{
+				materialListO:{
+					handler:function(val,oldVal){
+						//this.$nextTick(function(){
+						if(this.auto){
+							let factoryListOUpdataPart={};
+							for(var materialName in val){
+								//let productNumber=this.productListO[materialName] || 0;
+								//if(val[materialName]!=oldVal[materialName]){
+									//let difference=val[materialName]-productNumber;
+									if(materialName==="工人"){
+										let materialrest=val[materialName];
+										let ol=this.getOLWorker();
+										let n=0;
+										while(materialrest>=ol.L.product["工人"]){
+											n++;
+											materialrest-=ol.L.product["工人"];
+										}
+										if(this.factoryListO[ol.L.name]!==n){
+											factoryListOUpdataPart[ol.L.name]=n;
+										}
+										n=0;
+										while(materialrest>=ol.M.product["工人"]){
+											n++;
+											materialrest-=ol.M.product["工人"];
+										}
+										if(this.factoryListO[ol.M.name]!==n){
+											factoryListOUpdataPart[ol.M.name]=n;
+										}
+										n=0;
+										while(materialrest>this.error){
+											n++;
+											materialrest-=ol.S.product["工人"];
+										}
+										if(this.factoryListO[ol.S.name]!==n){
+											factoryListOUpdataPart[ol.S.name]=n;
+										}
+									}
+									else{
+										let o = this.getObyProductName(materialName);
+										if(o!=null){
+											let n=Math.ceil((val[materialName]-	this.error)/o.product[materialName]);
+											if(this.factoryListO[o.name]!==n){
+												factoryListOUpdataPart[o.name]=n;
+											}
+										}
+									}
+								//}
+							}
+							if(Object.keys(factoryListOUpdataPart).length>0){
+								this.factoryListO=Object.assign({},this.factoryListO,factoryListOUpdataPart);
+							}
+						}
+						//});
+					},
+					deep:true
+				},
+				force:function(val,oldVal){
+					/*
+					for(let key in this.factoryListO){
+						let o=this.getObyFactoryName(key);
+						if(o.force===oldVal){
+							delete this.factoryListO[key];
+						}
+					}*/
+					this.factoryListOEmpty();
+				}
+			},
+			updated:function () {
+				this.$nextTick(function () {
+					$('[data-toggle="tooltip"]').tooltip();
+				})
+			},
+			methods:{
+				getObyFactoryName:function(name){
+					for(const item of this.factoryData){
+						if(item.name===name){
+							return item;
+						}
+					}
+				},
+				getObyProductName:function(name){
+					for(const item of this.factoryData){
+						if(Object.keys(item.product)[0]===name && (item.force===this.force || item.force==='all')){
+						   return item;
+						   }
+					}
+				},
+				getOLWorker:function(){
+					var ol={};
+					for(const item of this.factoryData){
+						if(Object.keys(item.product)[0]==="工人" && (item.force===this.force || item.force==='all')){
+						   ol[item.name.charAt(item.name.length-1)]=item;
+						   }
+					}
+					return ol;
+				},
+				isPropertySupported:function (property) {
+					if (property in document.body.style) return true;
+					var prefixes = ['Moz', 'Webkit', 'O', 'ms', 'Khtml'];
+					var prefProperty = property.charAt(0).toUpperCase() + property.substr(1);
+					for(var i = 0; i < prefixes.length; i++){
+						if((prefixes[i] + prefProperty) in document.body.style) return true;
+					}
+					return false;
+				},
+				factoryListOEmpty:function(){
+					this.factoryListO=window.factoryCalculator.factoryModel.GetFactoryListO();
+				},
+				getTitle:function(factoryObject){
+					var text="产品：<br/>"
+					for(const key in factoryObject.product){
+						text+=key;
+						text+=":";
+						text+=factoryObject.product[key];
+						text+="<br/>";
+					}
+					text+="原料：<br/>";
+					for(const key in factoryObject.materials){
+						text+=key;
+						text+=":";
+						text+=factoryObject.materials[key];
+						text+="<br/>";
+					}
+					return text;
+				}
+			}
+		});
+		$(
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip();
+			})
+		);
+	</script>
+</body>
+</html>

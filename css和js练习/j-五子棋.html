@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>五子棋</title>
+	<style>
+		canvas{
+			background: #eee;
+			display: block;
+			margin: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas1"></canvas>
+	<script>
+		
+			var canvas1=document.getElementById("canvas1");
+			var paint=canvas1.getContext("2d");
+			paint.strokeStyle.color="#79A050";
+			var width1=35;
+			var size=15;
+			var r=Math.floor(width1/2-1);
+			var flag=true;// 真为白子，假为黑子。
+			var data=new Array(size);
+			var win=false;
+		
+			for(let i=0;i<size;i++){
+				data[i]=new Array(size);
+			}
+			canvas1.width=width1*size;
+			canvas1.height=width1*size;
+			
+			paint.lineWidth=1.2;
+			paint.beginPath();
+			for(let i=0;i<size;i++){
+				paint.moveTo(i*width1+width1/2,width1/2);
+				paint.lineTo(i*width1+width1/2,canvas1.width-width1/2);
+				paint.moveTo(width1/2,i*width1+width1/2);
+				paint.lineTo(canvas1.width-width1/2,i*width1+width1/2);
+			}
+			paint.stroke();
+			
+			canvas1.addEventListener("click",function(event){
+				if (win===true){return;}
+				var indexX=getIndex(event.offsetX);
+				var indexY=getIndex(event.offsetY);
+				if(indexX>=0 && indexY>=0 && data[indexX][indexY]==null){
+					var posX=indexX*width1+width1/2;
+					var posY=indexY*width1+width1/2;
+					paint.beginPath();
+					paint.arc(posX,posY,r,0,2*Math.PI);
+					if(flag){
+						paint.fillStyle="white";
+					}
+					else{
+						paint.fillStyle="black";
+					}
+					paint.fill();
+					data[indexX][indexY]=flag;
+					flag=!flag;
+					let winf=isWin();
+					if(winf!=null){
+						win=true;
+						if(winf){
+							setTimeout(()=>alert("白方胜利！"),0);
+						}
+						else{
+							setTimeout(()=>alert("黑方胜利！"),0);
+						}
+					}
+				}
+			});
+			
+			function getIndex(x){
+				var ll=Math.abs(x-width1/2);
+				var i=Math.floor(ll/width1);
+				if(ll%width1>width1-r){
+					i++;
+				}
+				return i;
+			}
+			function cicle(flag,indexX,indexY){
+				var posX=indexX*width1+width1/2;
+				var posY=indexY*width1+width1/2;
+				paint.beginPath();
+				paint.arc(posX,posY,r,0,2*Math.PI);
+				if(flag){
+					paint.stroke();
+				}
+				else{
+					paint.fill();
+				}
+			}
+			function isWin(){
+				var flag;
+				var i=1;
+				//检测列有没有5棋子个紧排列。
+				for(let x=0;x<size;x++){
+					//flag=data[x][0];
+					i=1;
+					for(let y=1;y<size;y++){
+						if(data[x][y]!=null && data[x][y]===data[x][y-1]){
+							i++;
+						}
+						else{
+							i=1;
+						}
+						if(i===5){
+							return data[x][y];
+						}
+					}
+				}
+				//检测行有没有5棋子个紧排列。
+				for(let y=0;y<size;y++){
+					i=1;
+					for(let x=1;x<size;x++){
+						if(data[x][y]!=null && data[x][y]===data[x-1][y]){
+							i++;
+						}
+						else{
+							i=1;
+						}
+						if(i===5){
+							return data[x][y];
+						}
+					}
+				}
+				//斜右下检测，先检测中间对角线右边+中间那斜列
+				//后面3斜不到5个，不计算
+				for(let xi=1;xi<size-3;xi++){
+					i=1;
+					let y=1;
+					let x=xi;
+					while(x<size){
+						if(data[x][y]!=null && data[x][y]===data[x-1][y-1]){
+							i++;
+						}
+						else{
+							i=1;
+						}
+						if(i===5){
+							return data[x][y];
+						}
+						x++;
+						y++;
+					}
+				}
+				//斜右下检测，先检测中间对角线左边不带中间斜
+				//后面3列斜不到5个，不计算
+				for(let yi=2;yi<size-3;yi++){
+					i=1;
+					let x=1;
+					let y=yi;
+					while(y<size){
+						if(data[x][y]!=null && data[x][y]===data[x-1][y-1]){
+							i++;
+						}
+						else{
+							i=1;
+						}
+						if(i===5){
+							return data[x][y];
+						}
+						x++;
+						y++;
+					}
+				}
+				//斜右上检测，先检测中间对角线上边带中间斜
+				//前面3列斜不到5个，不计算
+				for(let yi=3;yi<size-1;yi++){
+					i=1;
+					let x=1;
+					let y=yi;
+					while(y>=0){
+						if(data[x][y]!=null && data[x][y]===data[x-1][y+1]){
+							i++;
+						}
+						else{
+							i=1;
+						}
+						if(i===5){
+							return data[x][y];
+						}
+						x++;
+						y--;
+					}
+				}
+				//斜右上检测，先检测中间对角线下边不带中间斜
+				//后面3列斜不到5个，不计算
+				for(let xi=2;xi<size-3;xi++){
+					i=1;
+					let x=xi;
+					let y=13;
+					while(x<size){
+						if(data[x][y]!=null && data[x][y]===data[x-1][y+1]){
+							i++;
+						}
+						else{
+							i=1;
+						}
+						if(i===5){
+							return data[x][y];
+						}
+						x++;
+						y--;
+					}
+				}
+			}
+	</script>
+</body>
+</html>

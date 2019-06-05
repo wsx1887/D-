@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>VUE练习</title>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.3.1.js"></script>
+	
+	
+</head>
+
+<body>
+	<div id="app">
+		<label>你的信息为：{{ message["11"]['33'] }}</label>
+		<input type="text" title="" v-model="message['11']['33']"/>
+		<label>你的信息为：{{ factory }}</label>
+		<div id="demo">{{ fullName }}</div>
+		<div>{{ otherName }}</div>
+	</div>
+	
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				message:{"11":{'33':123123},"22":'fsfghjffgfg'},
+				firstName: {'name':'Foo'},
+    			lastName: {'name':'Bar'},
+				otherName:'my name'
+			},
+			computed:{
+				factory: function(){return {"ff":Number(this.message['11']['33'])+10}},
+				fullName: {
+    				// getter
+    				get: function () {
+						alert("sdfd");
+    				  return this.firstName.name + ' ' + this.lastName.name
+    				},
+    				// setter
+    				set: function (newValue) {
+    				  var names = newValue.split(' ');
+    				  this.firstName = names[0];
+    				  this.lastName = names[names.length - 1];
+						this.otherName=newValue+" my name";
+    				}
+  				}
+			}
+		});
+	</script>
+	
+</body>
+</html>

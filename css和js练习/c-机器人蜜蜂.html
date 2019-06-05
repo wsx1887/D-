@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>:root {
+            --leftMargin: 100px;
+            --baseWidth: 400px;
+            --baseHeight: 800px;
+            --backgroundC: #362620;
+            /* --contentC: #081b5a; */
+            --contentC:#f2b332;
+            --weelrolltime: 2s;
+            --headtime: 2s;
+          }
+          
+          .l-weel1 {
+            position: fixed;
+            top: 0px;
+            left: 80px;
+            animation:roll 2s; 
+            animation-fill-mode: forwards;
+            transform-origin: 40px 40px;
+          }
+          .l-weel {
+            position: fixed;
+            top: 40px;
+            left: 80px;
+            animation:roll 2s; 
+            animation-fill-mode: forwards;
+            transform-origin: 40px 40px;
+          }
+          
+          .l-weel .wingr0 {
+            position: absolute;
+            /* animation: wingr-aa 1s 4s infinite; */
+            animation: swing 0.2s 5s infinite cubic-bezier(.17,.67,.83,.67);
+            animation-fill-mode: forwards;
+            transform-origin: -40px 0px;
+            left: 130px;
+            /* transform: rotate(-30deg); */
+          }
+           
+          .l-weel .wingr {
+            position: absolute;
+            animation: winglroll 1s 4s;
+            animation-fill-mode: forwards;
+            top:-3000px;
+          }
+          
+          .l-weel .wingl {
+            position: absolute;
+            top:-3000px;
+            animation: winglroll 1s 4s;
+            animation-fill-mode: forwards;
+          }
+          
+          .l-weel .wingl1{
+            /* animation:winglanim 2s 4s; */
+            animation-fill-mode: forwards;
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            background: var(--backgroundC);
+            top: 40px;
+            left: -44px;
+            border-radius: 40px 40px 0 0;
+            border-right: 10px solid var(--contentC);
+            border-top: 10px solid var(--contentC);
+            border-left: 10px solid var(--contentC);
+            border-bottom: 0px solid var(--contentC);
+          }
+          
+          .l-weel .wingl2{
+            animation: wingltall 2s 5s;
+            animation-fill-mode: forwards;
+            position: absolute;
+            width: 20px;
+            height: 0px;
+            background: var(--backgroundC);
+            top: 60px;
+            left: -44px;
+            border-right: 10px solid var(--contentC);
+            border-left: 10px solid var(--contentC);
+          }
+          
+          .l-weel .wingl3{
+            animation: wingltall1 2s 5s;
+            animation-fill-mode: forwards;
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            background: var(--backgroundC);
+            top: 60px;
+            left: -44px;
+            border-radius: 0 0 40px 40px;
+            border-right: 10px solid var(--contentC);
+            border-top: 0px solid var(--contentC);
+            border-left: 10px solid var(--contentC);
+            border-bottom: 10px solid var(--contentC);
+          }
+           
+          .l-weel .l-top {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            left: 0px;
+            top: 0px;
+            background-color: var(--contentC);
+            border-radius: 40px 40px 0px 0px;
+          }
+          
+          .l-weel .l-son {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            left: 25px;
+            top: 54px;
+            background-color: var(--backgroundC);
+            border-radius: 100%;
+            animation: l-sonanim 2s calc(var(--weelrolltime));
+            animation-fill-mode: forwards;
+          }
+          
+          .l-weel .l-mid {
+            position: absolute;
+            width: 80px;
+            height: 0px;
+            left: 0px;
+            top: 44px;
+            background-color: var(--contentC);
+            animation: l-midanim 2s calc(var(--weelrolltime));
+            animation-fill-mode: forwards;
+          }
+          
+          .l-weel .l-bottom {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            left: 0px;
+            top: 44px;
+            background-color: var(--contentC);
+            border-radius: 0px 0px 40px 40px;
+            animation: l-bottomanim 2s calc(var(--weelrolltime));
+            animation-fill-mode: forwards;
+          }
+          
+          .l-weel .body3 {
+            position: absolute;
+            width: 80px;
+            height: 10px;
+            background: var(--backgroundC);
+            top: 50px;
+            left: -3000px;
+            animation: l-bodyanim 1s 7s;
+            animation-fill-mode: forwards;
+          }
+          
+          .l-weel .body4 {
+            position: absolute;
+            width: 80px;
+            height: 10px;
+            background: var(--backgroundC);
+            top: 70px;
+            left: -3000px;
+            animation: l-bodyanim 1s 8s;
+            animation-fill-mode: forwards;
+          }
+          
+          .l-weel .l-eye {
+            animation: l-eyeanim 1s 9s;
+            animation-fill-mode: forwards;
+            position: absolute;
+            border-radius: 100%;
+            width: 10px;
+            height: 10px;
+            left: 20px;
+            top: 16px;
+            background-color: var(--backgroundC);
+            box-shadow: 30px 0em 0 0 var(--backgroundC);
+            opacity:0;
+          }
+          
+          .l-weel .l-ear1 {
+            animation: l-eyeanim 1s 7s;
+            animation-fill-mode: forwards;
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background: var(--backgroundC);
+            left: 10px;
+            top: -10px;
+            border-radius: 8px;
+            transform: rotate(-30deg);
+            opacity:0;
+          }
+          
+          .l-weel .l-ear2 {
+            animation: l-eyeanim 1s 7s;
+            animation-fill-mode: forwards;
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background: var(--backgroundC);
+            left: 60px;
+            top: -10px;
+            border-radius: 8px;
+            transform: rotate(30deg);
+            opacity:0;
+          }
+          
+          @keyframes roll {
+            from {
+              left: -100px;
+              transform: rotate(0deg);
+            }
+            to {
+              left: 200px;
+              transform: rotate(360deg);
+            }
+          }
+          
+          @keyframes l-bodyanim {
+            from {
+              left: -200px;
+            }
+            to {
+              left: 0px;
+            }
+          }
+          
+          @keyframes winglroll {
+            from {
+              top: -100px;
+            }
+            to {
+              top: 0px;
+            }
+          }
+          
+          @keyframes wingr-aa {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(-30deg);
+            }
+          }
+          
+          @keyframes l-midanim {
+            from {
+              height: 0;
+            }
+            to {
+              height: 40px;
+            }
+          }
+          
+          @keyframes l-bottomanim {
+            from {
+              top: 44px;
+            }
+            to {
+              top: 84px;
+            }
+          }
+          
+          @keyframes l-sonanim {
+            from {
+              top: 54px;
+            }
+            to {
+              top: 94px;
+            }
+          }
+          
+          @keyframes wingltall {
+            from {
+              height: 0;
+            }
+            to {
+              height: 30px;
+            }
+          }
+          
+          @keyframes wingltall1 {
+            from {
+              top: 60px;
+            }
+            to {
+              top: 90px;
+            }
+          }
+          @keyframes l-eyeanim {
+            from {
+            opacity:0;
+            }
+            to {
+            opacity:1;
+            }
+          }
+          
+          @keyframes swing {
+            50% {
+              transform: rotate3d(0, 0, 1, -10deg);
+            }
+          
+            100% {
+              transform: rotate3d(0, 0, 1, 0deg);
+            }
+          
+          }
+          
+          </style>
+</head>
+<body>
+        <view class="l-weel">
+                <view class="l-top">
+                </view>
+                <view class="l-mid">
+                </view>
+                <view class="l-bottom">
+                </view>
+                <view class="l-son">
+                </view>
+                <view class="l-eye">
+                </view>
+                <view class="l-ear1">
+                </view>
+                <view class="l-ear2">
+                </view>
+                <view class="wingl">
+                  <view class="wingl1">
+                  </view>
+                  <view class="wingl2">
+                  </view>
+                  <view class="wingl3">
+                  </view>
+                </view>
+                <view class="wingr0">
+                  <view class="wingr">
+                  <view class="wingl1">
+                  </view>
+                  <view class="wingl2">
+                  </view>
+                  <view class="wingl3">
+                  </view>
+                  </view>
+                </view>
+                <view class="body3">
+                </view>
+                <view class="body4">
+                </view>
+              </view>
+              <!-- <view class="l-weel1">
+              <view class="l-weel">
+                <view class="l-top">
+                </view>
+                <view class="l-mid">
+                </view>
+                <view class="l-bottom">
+                </view>
+                <view class="l-son">
+                </view>
+                <view class="l-eye">
+                </view>
+                <view class="l-ear1">
+                </view>
+                <view class="l-ear2">
+                </view>
+                <view class="wingl">
+                  <view class="wingl1">
+                  </view>
+                  <view class="wingl2">
+                  </view>
+                  <view class="wingl3">
+                  </view>
+                </view>
+                <view class="wingr0">
+                  <view class="wingr">
+                  <view class="wingl1">
+                  </view>
+                  <view class="wingl2">
+                  </view>
+                  <view class="wingl3">
+                  </view>
+                  </view>
+                </view>
+                <view class="body3">
+                </view>
+                <view class="body4">
+                </view>
+              </view>
+              </view> -->
+</body>
+</html>

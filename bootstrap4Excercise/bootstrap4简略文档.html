@@ -1,0 +1,2050 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>bootstrap4简略文档</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+<style>
+body {
+	font-family: "tahoma", "verdana", "arial", "宋体", "sans-serif";
+}
+.bg-eee {
+	background-color: #eee;
+}
+.bg-ddd {
+	background-color: #ddd;
+}
+</style>
+</head>
+
+<body class="container" data-spy="scroll" data-target="#sidebar" data-offset="0" style="background: #eee">
+<div class="row">
+  <div class="col-12 col-md-9 order-2 order-md-1"> 
+    <!-- bootstrap4 在线引用文件和下载地址，viewPort用法-->
+    <div class="card border-success bg-light" id="start">
+      <h4 class="card-header border-success text-white bg-info">开始使用bootstrap4</h4>
+      <div class="card-body">
+        <h5 class="card-title"><b>引用相关文件：</b></h5>
+        <pre><code class="text-danger">&lt;script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"&gt;<br/>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" crossorigin="anonymous"&gt;<br/>&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" crossorigin="anonymous"&gt;<br/>&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous"&gt;
+					</code></pre>
+        <p class="card-text">js也可以直接引用bootstrap.bundle.min.js,它包含了popper,用于下拉菜单和提示框。</p>
+        <hr/>
+        <h5 class="card-title"><b>响应式meta标签：</b></h5>
+        <pre><code class="text-danger">&lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;</code></pre>
+        <p class="bg-warning"> 留空：viewport的用法</p>
+      </div>
+      <footer class="card-footer pb-0 border-success">
+        <blockquote class=""> bootstrap下载地址：<a href="http://getbootstrap.com" target="_blank">getbootstrap.com</a><br/>
+          bootstrap中文文档：<a href="https://code.z01.com/v4/docs/" target="_blank">https://code.z01.com/v4/docs/</a> </blockquote>
+      </footer>
+    </div>
+    <div class="card border-primary mt-2 bg-light" id="layout">
+      <h4 class="card-header border-primary text-white bg-info">布局</h4>
+      <div class="card-body">
+        <h5 class="card-title"><b>Container容器：</b></h5>
+        <dl class="row no-gutters mb-0">
+          <dt class="text-danger col-auto pr-3">.container</dt>
+          <dd class="col">有五个级别的屏幕响应宽度，在每个响应设定固定的宽度。</dd>
+        </dl>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.container-fluid</dt>
+          <dd class="col">浏览器或容器的100%宽度。</dd>
+        </dl>
+        <h5 class="card-title"><b>栅格：</b></h5>
+        <section class="border border-primary p-1">
+          <h6><strong>一级类：</strong></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.row</dt>
+            <dd class="col">栅格的每一行，display:flex在此定义。左右内边距为15px。里面列必须是直接子元素。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.no-gutters</dt>
+            <dd class="col">消除列间间隙，同时消除行的左右内边距。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.align-items-{}-{start|center|end}</dt>
+            <dd class="col">行在父元素里的垂直对齐方式。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.justify-content-{}-{start|center|end|around|between}</dt>
+            <dd class="col">行内列的水平对齐方式。</dd>
+          </dl>
+        </section>
+        <section class="border border-primary mt-2 p-1">
+          <h6><strong>二级类：</strong></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.col-{}-*</dt>
+            <dd class="col">设定列宽。只写col表示可变的列宽。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.col-{}-auto</dt>
+            <dd class="col">列宽为内容的宽度，增加的宽度从只写.col的列上获取，减少进同样。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.align-self-{}-{start|center|end}</dt>
+            <dd class="col">垂直对齐，写在列上，只对本列起作用。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.order-{}-{1~12}</dt>
+            <dd class="col">定义列的顺序，1优先，12末尾。如果不写order,则列的顺序不受写order的列影响，位置保持不变。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.offset-{}-{0~11}</dt>
+            <dd class="col"><span class="bg-warning">注意，没有offset-0。</span>列根据定义的栅格数进行偏移。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.ml-auto|.mr-auto</dt>
+            <dd class="col">用自动外边距来进行列的隔离</dd>
+          </dl>
+        </section>
+        <hr/>
+        <p class="bg-warning">注：上面的{}表示断点，可选{空|sm|md|lg|xl}。</p>
+        <table class="table table-sm table-bordered">
+          <caption style="caption-side: top">
+          <strong>屏幕断点选项：</strong>
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">超小屏幕<br/>
+                <small>＜576px</small></th>
+              <th scope="col">小屏幕<br/>
+                <small>≥576px</small></th>
+              <th scope="col">中屏幕<br/>
+                <small>≥768px</small></th>
+              <th scope="col">大屏幕<br/>
+                <small>≥992px</small></th>
+              <th scope="col">超大屏幕<br/>
+                <small>≥1200px</small></th>
+            </tr>
+            <tr>
+              <th scope="row">.container 宽度</th>
+              <td>未定义</td>
+              <td>540px</td>
+              <td>720px</td>
+              <td>960px</td>
+              <td>1140px</td>
+            </tr>
+            <tr>
+              <th scope="row">类部</th>
+              <td>空</td>
+              <td>sm</td>
+              <td>md</td>
+              <td>lg</td>
+              <td>xl</td>
+            </tr>
+            <tr>
+              <th scope="row">栅格列数</th>
+              <td colspan="5">12</td>
+            </tr>
+            <tr>
+              <th scope="row">栅格列间隙</th>
+              <td colspan="5">30px（每列两侧各15px）</td>
+            </tr>
+            <tr>
+              <th scope="row">栅格嵌套</th>
+              <td colspan="5">是</td>
+            </tr>
+          </thead>
+        </table>
+        <section class="border border-primary p-1">
+          <h6><strong>布局选项：</strong></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-flex</dt>
+            <dd class="col">flex弹性盒布局。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-inline-flex</dt>
+            <dd class="col">内联块级弹性盒。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-none</dt>
+            <dd class="col">隐藏内容。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-inline</dt>
+            <dd class="col">行内元素。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-inline-block</dt>
+            <dd class="col">行内块元素。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-block</dt>
+            <dd class="col">块元素。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-table</dt>
+            <dd class="col">内联元素级的表格。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-table-row</dt>
+            <dd class="col">表格行。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.d-{}-table-cell</dt>
+            <dd class="col">表格单元格</dd>
+          </dl>
+        </section>
+        <section class="border border-primary p-1 mt-2">
+          <h6><strong>边距选项：</strong></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.m-{}-{0~5}</dt>
+            <dd class="col">外边距，对应0，0.25rem,0.5rem,1rem,1.5rem,3rem</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.m-{}-n{1~5}</dt>
+            <dd class="col">负的外边距</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.p-{}-{0~5}</dt>
+            <dd class="col">内边距，对应0，0.25rem,0.5rem,1rem,1.5rem,3rem</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.mx-{}-*</dt>
+            <dd class="col">x轴上的外边距</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.my-{}-*</dt>
+            <dd class="col">Y轴上的外边距</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.mr-{}-*</dt>
+            <dd class="col">右外边距</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.ml-{}-*</dt>
+            <dd class="col">左外边距</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.mt-{}-*</dt>
+            <dd class="col">上外边距</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.mb-{}-*</dt>
+            <dd class="col">下外边距</dd>
+          </dl>
+          对应内边距也有：
+          <ul class="list-inline">
+            <li class="text-danger list-inline-item"><b>.px-{}-*</b></li>
+            <li class="text-danger list-inline-item"><b>.py-{}-*</b></li>
+            <li class="text-danger list-inline-item"><b>.pr-{}-*</b></li>
+            <li class="text-danger list-inline-item"><b>.pl-{}-*</b></li>
+            <li class="text-danger list-inline-item"><b>.pt-{}-*</b></li>
+            <li class="text-danger list-inline-item"><b>.pb-{}-*</b></li>
+          </ul>
+        </section>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote> 详细文档：<a href="https://code.z01.com/v4/layout/grid.html" target="_blank">https://code.z01.com/v4/layout/grid.html</a> </blockquote>
+      </footer>
+    </div>
+    <div class="card border-success mt-2 bg-light" id="content">
+      <h4 class="card-header border-success text-white bg-info">内容</h4>
+      <div class="card-body">
+        <fieldset class="border border-info p-1 mb-2" id="typography">
+          <legend class="w-auto"><b>排版</b></legend>
+          <h5><b>标题：</b></h5>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">&lt;h1&gt;~&lt;6&gt;</dt>
+            <dd class="col"></dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">&lt;small class="text-muted"&gt;</dt>
+            <dd class="col">小的辅助标题。</dd>
+          </dl>
+          <dl class="row no-gutters">
+            <dt class="text-danger col-auto pr-3">.display-{1~4}</dt>
+            <dd class="col">更大更鲜明的标题。</dd>
+          </dl>
+          <h5><b>文本内联元素：</b></h5>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item text-danger"><b>&lt;mark&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;del&gt;</b></li>
+            <li class="list-inline-item text-danger" title="不赞成使用">&lt;s&gt;</li>
+            <li class="list-inline-item text-danger"><b>&lt;ins&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;small&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;strong&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;b&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;i&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;em&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;u&gt;</b></li>
+          </ul>
+          <p class="mt-0">&lt;b&gt;旨在突出显示单词或短语、而不会增加重要性，&lt;i&gt;主要用于语音、技术术语等。</p>
+          <h5><b>abbr缩略语:</b></h5>
+          <dl class="row no-gutters">
+            <dt class="text-danger col-auto pr-3">&lt;abbr title="attribute"&gt;</dt>
+            <dd class="col"></dd>
+          </dl>
+          <h5><b>blockquote引用：</b></h5>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">&lt;blockquote class="blockquote"&gt;</dt>
+            <dd class="col">blockquote标签用于长的引用。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">&lt;footer class="blockquote-footer"</dt>
+            <dd class="col">标识来源，一般用于页脚。可配合&lt;cite&gt;使用。</dd>
+          </dl>
+          <dl class="row no-gutters">
+            <dt class="text-danger col-auto pr-3">&lt;cite&gt;</dt>
+            <dd class="col">对参考文献的引用，比如书籍或杂志的标题。斜体显示。</dd>
+          </dl>
+          <h5><b>列表：</b></h5>
+          <h6><b>一级类：</b></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.list-unstyled</dt>
+            <dd class="col">删除列表默认的符号和左边距。只影响直接子元素，不影响嵌套元素。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.list-inline</dt>
+            <dd class="col">列表默认的符号和左边距。同.list-unstyled。不引用也是默认去除。</dd>
+          </dl>
+          <h6><b>二级类:</b></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.list-inline-item</dt>
+            <dd class="col">列表项自己单行并排显示。</dd>
+          </dl>
+        </fieldset>
+        <fieldset class="border border-warning p-1 mb-2" id="code">
+          <legend class="w-auto"><b>代码块</b></legend>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.pre-scrollable</dt>
+            <dd class="col">在&lt;pre&gt;上使用，实现垂直滚动的效果。为350px高。</dd>
+          </dl>
+          语义化标签有：
+          <ul class="list-inline">
+            <li class="list-inline-item text-danger"><b>&lt;code&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;pre&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;var&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;kbd&gt;</b></li>
+            <li class="list-inline-item text-danger"><b>&lt;samp&gt;</b></li>
+          </ul>
+        </fieldset>
+        <fieldset class="border border-secondary p-1 mb-2" id="images">
+          <legend class="w-auto"><b>图片</b></legend>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.img-fluid</dt>
+            <dd class="col">定义max-width: 100%、height:auto样式，使图片有响应式特性。
+              <mark>IE 10浏览器中，SVG图片尺寸可能会不均称，可以在相应图片元素上添加width: 100% \9来解决。width:100% \9方法不能普遍引用，否则会造成其它图片格式的混乱。</mark>
+            </dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.img-thumbnail</dt>
+            <dd class="col">图片自动被加上一个带圆角且1px边界的外框缩略图样式,包含.img-fluid定义。</dd>
+          </dl>
+          <h6><b>图片对齐： </b></h6>
+          对于.block属性的块状图片，我们也可以使用 浮动定义规范 或 文字对齐规范，来实现对图像的对齐、浮动控制，还可以用margin的auto属性。
+        </fieldset>
+        <fieldset class="border border-warning mb-2 p-1">
+          <legend class="w-auto">Html 5 标准之Picture元素</legend>
+          <dl class="row no-gutters  mb-1">
+            <dt class="text-danger col-auto pr-3">&lt;picture&gt;</dt>
+            <dd class="col">它可以为 &lt;img&gt;指定多个&lt;source&gt; 定义,可实现图片在不同屏幕下的针对性响应式，其使用逻辑如下:</dd>
+          </dl>
+          <pre class="text-danger bg-ddd border border-danger"><code>&lt;picture&gt;
+  &lt;source src="大规格图片.jpg"  media="(min-width: 800px)" &gt;
+  &lt;source src="中规格图片.jpg"  media="(min-width: 600px)"&gt;
+  &lt;source src="小规格图片.jpg"&gt;
+  &lt;img src="通用图片.jpg" alt="这是当浏览器不支持picture标签时显示的图片"&gt;
+&lt;/picture&gt;</code></pre>
+        </fieldset>
+        <fieldset class="border border-primary p-1" id="tables">
+          <legend class="w-auto"><b>表格：</b></legend>
+          <h6><b>一级类（用在&lt;table&gt;）上：</b></h6>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table</dt>
+            <dd class="col">只有下边框的表格样式。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table-dark</dt>
+            <dd class="col">颜色反转，背景为黑色，字体为白色。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table-striped</dt>
+            <dd class="col">条纹表格。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table-bordered</dt>
+            <dd class="col">每个表格单元格都有边框。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table-borderless</dt>
+            <dd class="col">表格无边框。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table-hover</dt>
+            <dd class="col">每行都有鼠标悬停效果。</dd>
+          </dl>
+          <dl class="row no-gutters  mb-0">
+            <dt class="text-danger col-auto pr-3">.table-sm</dt>
+            <dd class="col">紧缩表格，原padding值缩减一半，使表格更加紧凑。</dd>
+          </dl>
+          <dl class="row no-gutters  mb">
+            <dt class="text-danger col-auto pr-3">.table-responsive-{}</dt>
+            <dd class="col">响应式表格。</dd>
+          </dl>
+			<h6><b>Head表头处理，二级类（用在&lt;thead&gt;上）：</b></h6>
+				<dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.thead-light</dt>
+          <dd class="col">灰色表头。</dd>
+        </dl>
+			<dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.thead-dark</dt>
+          <dd class="col">黑色表头。</dd>
+        </dl>
+			<h6><b>三级类：给行或者单个单元格着色。</b></h6>
+			<table class="table text-danger table-sm">				
+					<tbody>
+						<tr class="table-active"><td>.table-active</td></tr>
+						<tr class="table-primary"><td>.table-primary</td></tr>
+						<tr class="table-secondary"><td>.table-secondary</td></tr>
+						<tr class="table-success"><td>.table-success</td></tr>
+						<tr class="table-danger"><td>.table-danger</td></tr>
+						<tr class="table-warning"><td>.table-warning</td></tr>
+						<tr class="table-info"><td>.table-info</td></tr>
+						<tr class="table-light"><td>.table-light</td></tr>
+						<tr class="table-dark"><td>.table-dark</td></tr>
+					</tbody>
+				</table>
+        </fieldset>
+		  <fieldset class="border border-primary p-1 rounded"  id="figures">
+			  <legend class="w-auto"><b>图文框：</b></legend>
+			  <h6><b>一级类：</b></h6>
+			  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">&lt;figure class="figure"&gt;</dt>
+          <dd class="col">定义为行内块元素。</dd>
+        </dl>
+			  <h6><b>二级类：</b></h6>
+			  <dl class="row no-gutters mb-0">
+          <dt class="text-danger col-auto pr-3">.figure-img</dt>
+          <dd class="col">下外边距为0.5rem，行高为1。</dd>
+        </dl>
+			  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">&lt;figcaption class="figure-cation"&gt;</dt>
+          <dd class="col">90%的字体大小。</dd>
+        </dl>
+		  </fieldset>			  
+      </div>
+      <footer class="card-footer border-success pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/content/reboot.html" target="_blank">https://code.z01.com/v4/content/reboot.html</a> </blockquote>
+      </footer>
+    </div>
+    <div class="card border-primary mt-2 bg-light" id="alerts">
+      <h4 class="card-header border-primary text-white bg-info">警告提示框</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.alert</dt>
+          <dd class="col">必要类。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.alert-dismissible</dt>
+			  <dd class="col">和<span class="text-danger">.close</span>配对使用，用于确定确定<span class="text-danger">&lt;button&gt;</span>的样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.fade</dt>
+          <dd class="col">用于提示框关闭时的动画。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.show</dt>
+          <dd class="col">如果使用了<span class="text-danger">.fade</span>，必须用<span class="text-danger">.show</span>来使提示框加载后显示。</dd>
+        </dl>
+		  <b class="text-danger">专用颜色和背景：</b>
+		  <ul class="list-inline">
+		  	<li class="list-inline-item alert-primary"><b>.alert-primary</b></li>
+			  <li class="list-inline-item alert-secondary"><b>.alert-secondary</b></li>
+			  <li class="list-inline-item alert-success"><b>.alert-success</b></li>
+			  <li class="list-inline-item alert-danger"><b>.alert-danger</b></li>
+			  <li class="list-inline-item alert-warning"><b>.alert-warning</b></li>
+			  <li class="list-inline-item alert-info"><b>.alert-info</b></li>
+			  <li class="list-inline-item alert-light"><b>.alert-light</b></li>
+			  <li class="list-inline-item alert-dark"><b>.alert-dart</b></li>
+		  </ul>		  
+		  <h6><b>二级类：</b></h6>		  
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.alert-link</dt>
+          <dd class="col">根据对应的背景颜色，给链接加上相应色。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.alert-heading</dt>
+          <dd class="col">提示框标题。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.close</dt>
+          <dd class="col">用在<span class="text-danger">&lt;button&gt;</span>里面，放在右上角的一个透明框。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-dismiss="alert"</dt>
+          <dd class="col">用在<span class="text-danger">&lt;button&gt;</span>里面，触发JavaScript动作。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">&amp;times;</dt>
+          <dd class="col">一个&times;，表示关闭的符号。</dd>
+        </dl>
+		  <h6><b>JavaScript方法：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3"></dt>
+          <dd class="col"></dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3"></dt>
+          <dd class="col"></dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3"></dt>
+          <dd class="col"></dd>
+        </dl>
+		  <hr/>
+		  <div class="alert alert-info alert-dismissible fade show">
+		  	<h4 class="alert-heading">提示框例子</h4>
+			  <p class="mb-0">我是一个例子。<a class="alert-link" href="#alerts">我是一个链接。</a></p>
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  </div>
+		  <pre><code>  &lt;div class="<span class="text-danger">alert alert-info alert-dismissible fade show</span>"&gt;
+    &lt;h4 class="<span class="text-danger">alert-heading</span>"&gt;提示框例子&lt;/h4&gt;
+    &lt;p class="<span class="text-danger">mb-0</span>"&gt;我是一个例子。&lt;a class="<span class="text-danger">alert-link</span>" href="#alerts"&gt;我是一个链接。&lt;/a&gt;&lt;/p&gt;
+    &lt;button type="button" class="<span class="text-danger">close</span>" <span class="text-danger">data-dismiss="alert"</span>&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;</code></pre>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/alerts.html" target="_blank">https://code.z01.com/v4/components/alerts.html</a> </blockquote>
+      </footer>
+    </div>
+	      <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="badge">徽章</h4>
+      <div class="card-body">
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.badge</dt>
+          <dd class="col">规定了外观，行内块、圆角。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.badge-pill</dt>
+          <dd class="col">椭圆形的徽章。</dd>
+        </dl>
+		  <h6 class="mt-2">徽章的颜色类：</h6>
+		  <ul class="list-inline h5">
+		  	<li class="badge badge-secondary">Secondary</li>
+			  <li class="badge badge-primary">primary</li>
+			  <li class="badge badge-success">success</li>
+			  <li class="badge badge-danger">danger</li>
+			  <li class="badge badge-warning">warning</li>
+			  <li class="badge badge-info">info</li>
+			  <li class="badge badge-light">light</li>
+			  <li class="badge badge-dark">dark</li>
+		  </ul>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/badge.html" target="_blank">https://code.z01.com/v4/components/badge.html</a>  </blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="breadcrumb">面包屑</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.breadcrumb</dt>
+          <dd class="col">多用于有序列表或无序列表。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.breadcrumb-item</dt>
+          <dd class="col">导航项。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.active</dt>
+          <dd class="col">表示当前页的导航。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/breadcrumb.html" target="_blank">https://code.z01.com/v4/components/breadcrumb.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="button">按钮</h4>
+      <div class="card-body">
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn</dt>
+          <dd class="col">用在&lt;a&gt;、&lt;button&gt;或&lt;input&gt;上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-lg</dt>
+          <dd class="col">大规格的按钮。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-sm</dt>
+          <dd class="col">小规格的按钮。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-block</dt>
+          <dd class="col">宽度为100%的块按钮。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.active</dt>
+          <dd class="col">激活的状态。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">disabled/.disabled</dt>
+          <dd class="col">禁用按钮。&lt;button&gt;和&lt;input&gt;使用disabled属性，&lt;a&gt;使用pointer-events: none。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="button"</dt>
+          <dd class="col">切换按钮的 active 状态。用在按钮或者外包的.btn-group、btn-group-toggle上。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.btn-group-toggle</dt>
+          <dd class="col">包裹单选、多选按钮。用clip: rect(0, 0, 0, 0)隐藏选择框，并配合data-toggle="button"启用选择时的状态。</dd>
+        </dl>
+		  <h6><b>按钮颜色：</b></h6>
+		  <button type="button" class="btn btn-primary">.btn-primary</button>
+		  <button type="button" class="btn btn-secondary">.btn-secondary</button>
+			<button type="button" class="btn btn-success">.btn-success</button>
+			<button type="button" class="btn btn-danger">.btn-danger</button>
+			<button type="button" class="btn btn-warning">.btn-warning</button>
+			<button type="button" class="btn btn-info">.btn-info</button>
+			<button type="button" class="btn btn-light">.btn-light</button>
+			<button type="button" class="btn btn-dark">.btn-dark</button>
+			<button type="button" class="btn btn-link">.btn-link</button>
+		  <h6 class="mt-3"><b>轮廓按钮：</b></h6>
+		  <button type="button" class="btn btn-outline-primary">.btn-outline-primary</button>
+			<button type="button" class="btn btn-outline-secondary">.btn-outline-secondary</button>
+			<button type="button" class="btn btn-outline-success">.btn-outline-success</button>
+			<button type="button" class="btn btn-outline-danger">.btn-outline-danger</button>
+			<button type="button" class="btn btn-outline-warning">.btn-outline-warning</button>
+			<button type="button" class="btn btn-outline-info">.btn-outline-info</button>
+			<button type="button" class="btn btn-outline-light">.btn-outline-light</button>
+			<button type="button" class="btn btn-outline-dark">.btn-outline-dark</button>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/buttons.html" target="_blank">https://code.z01.com/v4/components/buttons.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="buttongroup">按钮组</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+        <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.btn-toolbar</dt>
+          <dd class="col">flex盒布局。用于包裹多个.btn-group。</dd>
+        </dl>		  
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-group</dt>
+          <dd class="col">包裹.btn。各个按钮之间没有边距。inline-flex布局。</dd>
+        </dl>
+		  <dl class="row no-gutters mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-group-vertical</dt>
+          <dd class="col">垂直排列的按钮组。inline-flex布局。包含.btn-group的定义。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-group-lg</dt>
+          <dd class="col">大规格按钮组，里面的按钮可以不需要.btn-lg。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn-group-sm</dt>
+          <dd class="col">小规格按钮组，里面的按钮可以不需要.btn-sm。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/button-group.html" target="_blank">https://code.z01.com/v4/components/button-group.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="card">卡片</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.card</dt>
+          <dd class="col">相对定位，flex布局。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-header</dt>
+          <dd class="col">卡片头部。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-body</dt>
+          <dd class="col">卡片主体。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-footer</dt>
+          <dd class="col">卡片脚。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.bg-transparent</dt>
+          <dd class="col">删除背景色。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-img</dt>
+          <dd class="col">图片四个角都是圆角。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-img-top</dt>
+          <dd class="col">图片上部圆角。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-img-bottom</dt>
+          <dd class="col">图片下部圆角。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-img-overlay</dt>
+          <dd class="col">绝对定位于卡片。四个边距都是0。配合.card-img使用，可以使文字覆盖在图片上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-title</dt>
+          <dd class="col">margin-bottom: 0.75rem。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-subtitle</dt>
+          <dd class="col">margin-top: -0.375rem，margin-bottom: 0。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-text</dt>
+          <dd class="col">last-child：  margin-bottom: 0。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-link</dt>
+          <dd class="col">链接无下划线。text-decoration: none。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-header-tabs</dt>
+          <dd class="col">配合标签式滑动导航.nav-tabs使用。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.card-header-pills</dt>
+          <dd class="col">配合胶囊式滑动导航.nav-pills使用。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/card.html" target="_blank" class="card-link">https://code.z01.com/v4/components/card.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="carousel">轮播</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">id属性</dt>
+          <dd class="col"><mark>必须。</mark>轮播组件必须要有一个id。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel</dt>
+          <dd class="col">引入轮播组件。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-ride="carousel"</dt>
+          <dd class="col">指示页面加载时初始化。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.slide</dt>
+          <dd class="col">让轮播有动画效果。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.carousel-fade</dt>
+          <dd class="col">用交替变化代替默认的滑动变化。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-inner</dt>
+          <dd class="col">轮播的内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-indicators</dt>
+          <dd class="col">状态指示器内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-control-prev</dt>
+          <dd class="col">上一幅。用在&lt;a&gt;上，href链接到整个轮播的id。位置在轮播组件左边。如果图片不是100%宽度，则此按钮位置可能在图片外面。</dd>
+        </dl>
+		  <dl class="row no-gutters mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-control-next</dt>
+          <dd class="col">下一幅。用在&lt;a&gt;上，href链接到整个轮播的id。位置在轮播组件右边。如果图片不是100%宽度，则此按钮位置可能在图片外面。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">data-slide="prev/next"</dt>
+          <dd class="col">用在.carousel-control-prev/next上，支持点击切换轮播。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-item</dt>
+          <dd class="col">轮播项，里面放置图片的文字。图片最好用.d-block和.w-100来填充整个宽度。用.carousel-caption来让文字显示在图片上方。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.active</dt>
+          <dd class="col">唯一性。用在.carousel-item或者状态指示器上面。表示初始显示的轮播项。</dd>
+        </dl>
+		  <dl class="row no-gutters mb-0">
+          <dt class="text-danger col-auto pr-3">data-interval="毫秒"</dt>
+          <dd class="col">用在.carousel-item上，表示多少时间后切换下一幅。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-control-prev-icon</dt>
+          <dd class="col">用在.carousel-control-prev里面，一个向左的按钮。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-control-next-icon</dt>
+          <dd class="col">用在.carousel-control-next里面，一个向右的按钮。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">sr-only</dt>
+          <dd class="col">表示只读内容。用clip: rect(0, 0, 0, 0)来隐藏。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-target="#id"</dt>
+          <dd class="col">用在状态指示器里面的项。#id为整个轮播的id。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">data-slide-to="序号"</dt>
+          <dd class="col">点击时显示的轮播项序号。必须有唯一的.active，对应轮播项的.active位置。</dd>
+        </dl>		  
+		  <h6><b>四级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.carousel-caption</dt>
+          <dd class="col">放在图片上的文字。用在.carousel-item里面。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/carousel.html" target="_blank">https://code.z01.com/v4/components/carousel.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="collapse">折叠面板</h4>
+      <div class="card-body">
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.collapse</dt>
+          <dd class="col">折叠的内容。初始是隐藏的。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.show</dt>
+          <dd class="col">使初始为显示。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-parent="#id"</dt>
+          <dd class="col">折叠的内容用于手风琴效果。确保所有的折叠元素在指定的父元素下，这样就能实现在一个折叠选项显示时其他选项就隐藏。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="collapse"</dt>
+          <dd class="col">在按钮使用，指示按钮用于折叠。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">href/data-target="#id/.class"</dt>
+          <dd class="col">按钮指向折叠的内容。可以使用jQuery选择器。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/collapse.html" target="_blank">https://code.z01.com/v4/components/collapse.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="dropdown">下拉菜单</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown</dt>
+          <dd class="col">只是定义为相对定位，所以任何有相对定位的类都可以用来包裹下拉菜单，比如.btn-group。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropup</dt>
+          <dd class="col">菜单向上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropright</dt>
+          <dd class="col">菜单向右。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.dropleft</dt>
+          <dd class="col">菜单向左。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.btn</dt>
+          <dd class="col">任务.btn按钮都可以转化为下拉菜单。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-toggle</dt>
+          <dd class="col">用::after在按钮后添加一个内容为空，大的上边框的向下箭头。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-toggle-split</dt>
+          <dd class="col">用于分裂式下拉按钮。此按钮只有一个下拉箭头。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="dropdown"</dt>
+          <dd class="col">指示按钮用于下拉菜单。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-display="static"</dt>
+          <dd class="col">禁用按钮的动态定位。用于使用响应式对齐类时。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-offset="整数,整数"/data-reference="parent"</dt>
+          <dd class="col">改变下拉菜单的位置。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-menu</dt>
+          <dd class="col">包裹下拉菜单的内容。理论上任务内容都可以放在下拉菜单中，比如列表、表单等。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-menu-{}-right</dt>
+          <dd class="col">下拉的菜单响应对齐按钮右边。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.dropdown-menu-{}-left</dt>
+          <dd class="col">下拉的菜单响应对齐按钮左边。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-item</dt>
+          <dd class="col">用于&lt;a&gt;或&lt;button&gt;，下拉菜单中的链接。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-divider</dt>
+          <dd class="col">横分隔线。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-item-text</dt>
+          <dd class="col">一行说明文字。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.active</dt>
+          <dd class="col">启用状态。高亮显示。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.disabled</dt>
+          <dd class="col">禁用链接。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown-header</dt>
+          <dd class="col">下拉头的文字。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/dropdowns.html" target="_blank">https://code.z01.com/v4/components/dropdowns.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="forms">表单</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-row</dt>
+          <dd class="col">比.row更小的沟槽缝隙。里面放.col-*，再放.form-group等。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.form-inline</dt>
+          <dd class="col">用于外包裹。里面的各个.form-group等按行排列。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-group</dt>
+          <dd class="col">包含文本标签和表单件的组。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-check</dt>
+          <dd class="col">复选框和单选框的组。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-check-inline</dt>
+          <dd class="col">用于单选框和复选框。每个.form-check-inline在同一行排列。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-control</dt>
+          <dd class="col">自定义表单组。</dd>
+        </dl>
+		  
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-check</dt>
+          <dd class="col">表示自定义的复选框组。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-radio</dt>
+          <dd class="col">表示自定义的单选框组。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-switch</dt>
+          <dd class="col">IOS风格的复选框组。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.custom-file</dt>
+          <dd class="col">自定义的文件选择器组。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control</dt>
+          <dd class="col">用在&lt;input&gt;、&lt;select&gt;、&lt;textarea&gt;上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control-file</dt>
+          <dd class="col">比较传统的文件选择器。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control-range</dt>
+          <dd class="col">水平滚动选择条。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control-lg</dt>
+          <dd class="col">较大的组件。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control-sm</dt>
+          <dd class="col">较小的组件。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.col-form-label</dt>
+          <dd class="col">垂直居中与他们相关的表单控件。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.col-form-label-lg</dt>
+          <dd class="col">垂直居中与他们相关的表单控件。较大的文字。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.col-form-label-sm</dt>
+          <dd class="col">垂直居中与他们相关的表单控件。较小的文字。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">readonly属性</dt>
+          <dd class="col">只读的input控件。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control-plaintext</dt>
+          <dd class="col">使只读的input控件无边框。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">disabled属性</dt>
+          <dd class="col">禁用控件。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-check-input</dt>
+          <dd class="col">用于复选框和单选框。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-control-label</dt>
+          <dd class="col">和自定义表单控件一起使用。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.position-static</dt>
+          <dd class="col">用在checkbox和radio上。使其没有文本。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-control-input</dt>
+          <dd class="col">用在自定义的单选和复选框上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-range</dt>
+          <dd class="col">自定义的滚动选择条。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-file-label</dt>
+          <dd class="col">文字显示在自定义的文件选择器控件上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-file-input</dt>
+          <dd class="col">自定义文件选择器。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-select</dt>
+          <dd class="col">自定义下拉选择器。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-select-lg</dt>
+          <dd class="col">较大的自定义下拉选择器。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-select-sm</dt>
+          <dd class="col">较小的自定义下拉选择器。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-text</dt>
+          <dd class="col">display: block;margin-top: 0.25rem;</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.text-muted</dt>
+          <dd class="col">较浅色的文字，配合&lt;small&gt;使用。用于下方的帮助提示文本。</dd>
+        </dl>
+		  <mark>验证？？？？？？？？？</mark>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/forms.html" target="_blank">https://code.z01.com/v4/components/forms.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="inputgroup">输入框</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  	<dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.input-group</dt>
+          <dd class="col">包裹输入框组。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.input-group-lg</dt>
+          <dd class="col">较大的入框组。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.input-group-sm</dt>
+          <dd class="col">较小的入框组。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.flex-nowrap</dt>
+          <dd class="col">？？？</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.input-group-prepend</dt>
+          <dd class="col">前置附加组件。里面可以放.input-group-text、按钮、下拉菜单、分裂式下拉菜单等。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.input-group-append</dt>
+          <dd class="col">后置附加组件。里面可以放.input-group-text、按钮、下拉菜单、分裂式下拉菜单等。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-control</dt>
+          <dd class="col">输入框。可放置多个。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.custom-select</dt>
+          <dd class="col">选择框。可放置多个。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.custom-file</dt>
+          <dd class="col">文件选择框。可放置多个。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.input-group-text</dt>
+          <dd class="col">放在附加组件中，里面可放置多个&lt;span&gt;文字、checkbox、radio等。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/input-group.html" target="_blank">https://code.z01.com/v4/components/input-group.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="jumbotron">大块屏幕</h4>
+      <div class="card-body">
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.jumbotron</dt>
+          <dd class="col">带圆角的大块区域。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.jumbotron-fluid</dt>
+          <dd class="col">去掉左右内边距和圆角。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/jumbotron.html" target="_blank">https://code.z01.com/v4/components/jumbotron.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="listgroup">列表组</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  	<dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.list-group</dt>
+          <dd class="col">列表组。垂直方向的flex布局。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.list-group-flush</dt>
+          <dd class="col">贴紧的列表项。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.tab-content</dt>
+          <dd class="col">包裹列表项对应显示的内容。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.list-group-item</dt>
+          <dd class="col">每个列表项。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.active</dt>
+          <dd class="col">激活的状态，配合显示内容.tab-pane用。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.disabled</dt>
+          <dd class="col">禁用。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.ist-group-item-action</dt>
+          <dd class="col">使列表项有悬停等效果。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.badge</dt>
+          <dd class="col">每个列表项可以引入徽章。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="list"</dt>
+          <dd class="col">启用JavaScript行为，控制显示的内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">href/data-target</dt>
+          <dd class="col">目标为.tab-pane的id。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.tab-pane</dt>
+          <dd class="col">各个列表项所要显示的内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.fade</dt>
+          <dd class="col">淡入淡出效果。初始为隐藏。所以第一个显示的要加.show。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.show</dt>
+          <dd class="col">初始显示。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/list-group.html" target="_blank">https://code.z01.com/v4/components/list-group.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="modal">弹出模态框</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  	<dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.modal</dt>
+          <dd class="col">模态框主类。采用fixed定位。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.fade</dt>
+          <dd class="col">模态框的动画效果。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.bd-example-modal-lg</dt>
+          <dd class="col">较大的模态框。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.bd-example-modal-sm</dt>
+          <dd class="col">较小的模态框。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-tager/href</dt>
+          <dd class="col">用在模态框个面的按钮或链接上，指向模态框内容。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">data-toggle="modal"</dt>
+          <dd class="col">用在模态框个面的按钮或链接上。启动模态框效果。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.modal-dialog</dt>
+          <dd class="col">模态对话框。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.modal-dialog-centered</dt>
+          <dd class="col">模态对话框居中显示。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.modal-content</dt>
+          <dd class="col">包裹模态框的内容。</dd>
+        </dl>
+		  <h6><b>四级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.modal-header</dt>
+          <dd class="col">模态框内容头部。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.modal-body</dt>
+          <dd class="col">模态框内容主体。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.modal-footer</dt>
+          <dd class="col">模态框脚部。</dd>
+        </dl>
+		  <h6><b>五级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.modal-title</dt>
+          <dd class="col">模态框标题。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.colse</dt>
+          <dd class="col">放在右上角的按钮。用&amp;times;</dd>
+        </dl>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-dismiss="modal"</dt>
+          <dd class="col">使用这个才能关闭模态框。不只在右上角的按钮。自定义的其它按钮也可以用。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/modal.html" target="_blank">https://code.z01.com/v4/components/modal.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="navs">导航、滑动门</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  	<dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.nav</dt>
+          <dd class="col">采用flex的导航区域。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.justify-content-center</dt>
+          <dd class="col">导航居中显示。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.justify-content-end</dt>
+          <dd class="col">导航右边显示。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">flex-column</dt>
+          <dd class="col">垂直的导航。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.nav-tabs</dt>
+          <dd class="col">选项卡标签的导航样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.nav-pills</dt>
+          <dd class="col">胶囊形的导航样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.nav-fill</dt>
+          <dd class="col">每个导航链接按比例分配整个水平空间。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.nav-justified</dt>
+          <dd class="col">每个导航链接同等宽度。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.nav-item</dt>
+          <dd class="col">导航项。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.nav-link</dt>
+          <dd class="col">导航链接。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.active</dt>
+          <dd class="col">活动是的样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.disabled</dt>
+          <dd class="col">禁用链接。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-sm-fill</dt>
+          <dd class="col">导航链接可以加入flex弹性布局样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.text-sm-center</dt>
+          <dd class="col">文字的flex弹性而已样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.dropdown</dt>
+          <dd class="col">导航链接可以为下拉菜单。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="tab"</dt>
+          <dd class="col">启用选项卡样式的滑动门。配合.nav-tabs使用。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="pill"</dt>
+          <dd class="col">启用胶囊式的滑动门。配合.nav-pills使用。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">href/data-target</dt>
+          <dd class="col">链接批向滑动门对应的内容。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.tab-content</dt>
+          <dd class="col">包裹滑动门对应的内容</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.tab-pane</dt>
+          <dd class="col">滑动门每项内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.fade</dt>
+          <dd class="col">淡入淡出动画效果。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.show</dt>
+          <dd class="col">初始显示。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.acitve</dt>
+          <dd class="col">初始的活动项。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/navs.html" target="_blank">https://code.z01.com/v4/components/navs.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="navbar">导航栏</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar</dt>
+          <dd class="col">导航栏区域。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-expand-{}</dt>
+          <dd class="col">导航栏展开响应屏幕宽度。小于断点宽度导航栏会折叠。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-light</dt>
+          <dd class="col">用于浅色背景的导航,如.bg-light。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-dark</dt>
+          <dd class="col">用于深色背景的导航,如bg-dark。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.fixed-top</dt>
+          <dd class="col">固定导航栏到顶部。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.fixed-bottom</dt>
+          <dd class="col">固定导航栏到底部。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.sticky-top</dt>
+          <dd class="col">粘到顶部。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-brand</dt>
+          <dd class="col">用于商标、品牌。</dd>
+        </dl>
+		  <p>.brand和&lt;button&gt;前后位置决定了折叠时两边的左右位置。</p>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-toggler</dt>
+          <dd class="col">导航折叠时按钮的样式。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="collapse"</dt>
+          <dd class="col">启用导航折叠。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-target</dt>
+          <dd class="col">按钮指向折叠的内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.collapse</dt>
+          <dd class="col">包裹折叠的导航内容。除了按钮、品牌外，其它内容都放在折叠面板里面。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-collapse</dt>
+          <dd class="col">和.collapse一起使用。包裹折叠的导航内容。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.navbar-text</dt>
+          <dd class="col">导航里面文字的样式。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-toggler-icon</dt>
+          <dd class="col">折叠时按钮的背景。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.navbar-nav</dt>
+          <dd class="col">导航栏里面的内容和<a href="#navs">导航</a>一样，但用.navbar-nav来代替.nav。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.form-inline</dt>
+          <dd class="col">包裹导航栏里的表单。和navbar-nav同级。里面可以有.form-control、.input-group、.btn。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/navbar.html" target="_blank">https://code.z01.com/v4/components/navbar.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="pagination">分页</h4>
+      <div class="card-body">
+		  <p>分页推荐使用的嵌套格式为&lt;nav&gt;-&lt;ul&gt;-&lt;li&gt;-&lt;a&gt;。</p>
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.pagination</dt>
+          <dd class="col">分页，用在&lt;ul&gt;上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.pagination-lg</dt>
+          <dd class="col">较大的分页导航。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.pagination-sm</dt>
+          <dd class="col">较小的分布导航。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.justify-content-center</dt>
+          <dd class="col">居中显示。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.justify-content-end</dt>
+          <dd class="col">右侧显示。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.page-item</dt>
+          <dd class="col">用在&lt;li&gt;上。</dd>
+        </dl>
+		  <h6><b>三级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.page-link</dt>
+          <dd class="col">用在&lt;a&gt;上。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">&amp;laquo;</dt>
+          <dd class="col">&laquo;标志。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">&amp;raquo;</dt>
+          <dd class="col">&raquo;标志。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/pagination.html" target="_blank">https://code.z01.com/v4/components/pagination.html</a></blockquote>
+      </footer>
+    </div>
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="popovers">POP提示</h4>
+      <div class="card-body">
+		  <p class="mb-0">pop提示默认为禁用，需要加入Javascript来启动。启用后title提示会被覆盖。启用代码为：</p>
+		  <pre><code>$(function(){
+  $('[data-toggle="popover"]').popover();
+})</code></pre>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="popver"</dt>
+          <dd class="col">启用pop提示。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">title="..."</dt>
+          <dd class="col">原来titile提示效果被覆盖，变成pop的标题。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-content="..."</dt>
+          <dd class="col">pop里面的内容。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-container="body"</dt>
+          <dd class="col">在pop与父元素的其它样式干扰时，可以指定自定义container。</dd>
+        </dl>
+		  <p class="mb-0"><pre><code>$(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  });
+})</code></pre></p>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-placement=""</dt>
+          <dd class="col">pop提示弹出的方向。值有：top、right、left、bottom。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-trigger="focus"</dt>
+          <dd class="col">当焦点离开链接时，pop提示就消失。这个效果bootstrap4说明必须要&lt;a&gt;，而不能用&lt;button&gt;。可以使用data-trigger="hover"支持鼠标悬停弹出提示。</dd>
+        </dl>
+		  <p>对于disabled的按钮，可以外包一个&lt;span&gt;标签,并在上面使用pop效果。</p>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/popovers.html" target="_blank">https://code.z01.com/v4/components/popovers.html</a></blockquote>
+      </footer>
+    </div>	  
+	  <div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="progress">进度条</h4>
+      <div class="card-body">
+		  <p>bootstrap4 不使用&lt;progress&gt;，而是使用&lt;div&gt;。<br/>
+		  改造后的.progress里面可以包含多个.progress-bar。<br/>
+			  .progress-bar里面的文字显示在进度条上。
+		  </p>
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.progress</dt>
+          <dd class="col">一个进度条容器。里面可以包含多个.progress-bar。多个进度条水平排列，宽度和为100%。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">style="height:1px;"</dt>
+          <dd class="col">自定义进度条的高度。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.progress-bar</dt>
+          <dd class="col">每一项进度条栏。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">style="width:20%"或.w-25</dt>
+          <dd class="col">显示为进度。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.bg-primary</dt>
+          <dd class="col">进度条的背景。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.progress-bar-striped</dt>
+          <dd class="col">条纹进度条。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.progress-bar-animated</dt>
+          <dd class="col">进度条有动画。用的是css3动画。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/progress.html" target="_blank">https://code.z01.com/v4/components/progress.html</a></blockquote>
+      </footer>
+    </div>
+	<div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="scrollspy">滚动监听</h4>
+      <div class="card-body">
+		  <p>滚动监听的内容必须为相对定位position:relative，以及有滚动条overflow:scroll。<br/>
+		  内容里面还必须有锚点id。以便链接&lt;a&gt;的href指向它。<br/>
+			  嵌套的.nav是激活状态时，父元素也是激活状态。
+		  </p>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-spy="scroll"</dt>
+          <dd class="col">用在监听内容的外包标签上。必须为相对定位position:relative，以及有滚动条overflow:scroll。如果滚动条是窗口滚动条，那么就放在&lt;body&gt;上，监听的是&lt;body&gt;。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-target="#id"</dt>
+          <dd class="col">用在监听内容的外包标签上。指向包裹监听链接的标签。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-offset="整数"</dt>
+          <dd class="col">偏移的像素数量。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/scrollspy.html" target="_blank">https://code.z01.com/v4/components/scrollspy.html</a></blockquote>
+      </footer>
+    </div>
+	<div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="spinners">旋转特效</h4>
+      <div class="card-body">
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.spinner-border</dt>
+          <dd class="col">旋转的特效。用于“正在加载”之类的情形。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.spinner-grow</dt>
+          <dd class="col">快速放大的特效。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.spinner-border-sm</dt>
+          <dd class="col">较小的特效。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">style="width: ;height: ;"</dt>
+          <dd class="col">可以自定义特效的大小。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.text-{primary}</dt>
+          <dd class="col">用来给特效上色。不用border-color是因为每个旋转特效组件的至少有一个边框都被定义了 transparent 边界, 因此 .border-{color} 会覆盖它。</dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/spinners.html" target="_blank">https://code.z01.com/v4/components/spinners.html</a></blockquote>
+      </footer>
+    </div>
+	<div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="toasts">弹出通知框</h4>
+      <div class="card-body">
+		  <h6><b>一级类：</b></h6>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">.toast</dt>
+          <dd class="col">通知框。</dd>
+        </dl>
+		  <h6><b>二级类：</b></h6>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.toast-header</dt>
+          <dd class="col">通知框头部。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.toast-body</dt>
+          <dd class="col">通知框主体内容。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">data-dismiss="toast"</dt>
+          <dd class="col">让按钮可以关闭通知框。</dd>
+        </dl>
+		  <p>定位：可以给通知框外包一个&lt;div&gt;。在这个外包&lt;div&gt;上使用style="position: absolute; top: 0; right: 0;"等相对定位。&lt;div&gt;可以放置多个.toast，它们是自动堆叠的。</p>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/toasts.html" target="_blank">https://code.z01.com/v4/components/toasts.html</a></blockquote>
+      </footer>
+    </div>
+	<div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="tooltips">冒泡提示</h4>
+      <div class="card-body">
+		  <p class="mb-0">tooltip默认是禁用的，要在自己的html上启动它。</p>
+		  <pre><code>$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})</code></pre>
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-toggle="tooltip"</dt>
+          <dd class="col">启用冒泡效果。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">data-placement=""</dt>
+          <dd class="col">冒泡的方向。值可以为：top、bottom、left、right。</dd>
+        </dl>
+		  <dl class="row no-gutters mb-0">
+          <dt class="text-danger col-auto pr-3">title=""</dt>
+          <dd class="col">提示的文字内容。</dd>
+        </dl>
+		  <dl class="row no-gutters">
+          <dt class="text-danger col-auto pr-3">data-html="true"</dt>
+          <dd class="col">提示的文字内容title=""里面可以用自定义HTML，例如：title="&lt;em&gt;Tooltip&lt;/em&gt; &lt;u&gt;with&lt;/u&gt; &lt;b&gt;HTML&lt;/b&gt;"。</dd>
+        </dl>
+		  <p class="mb-0">对于disabled的按钮，可以外包一个&lt;span&gt;标签,并在上面使用tooltip效果。</p>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/components/tooltips.html" target="_blank">https://code.z01.com/v4/components/tooltips.html</a></blockquote>
+      </footer>
+    </div>
+	<div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info" id="utilities">公共样式</h4>
+      <div class="card-body">
+		  <h4><b class="text-info">边框：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.border</li>
+			  <li class="list-inline-item">.border-top</li>
+			  <li class="list-inline-item">.border-right</li>
+			  <li class="list-inline-item">.border-bottom</li>
+			  <li class="list-inline-item">.border-left</li>
+		  </ul>
+		  <h6><b>删除边框：</b></h6>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.border-0</li>
+			  <li class="list-inline-item">.border-top-0</li>
+			  <li class="list-inline-item">.border-right-0</li>
+			  <li class="list-inline-item">.border-bottom-0</li>
+			  <li class="list-inline-item">.border-left-0</li>
+		  </ul>
+		  <h6><b>边框颜色：</b></h6>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item  border border-primary">.border-primary</li>
+			  <li class="list-inline-item  border border-secondary">.border-secondary</li>
+			  <li class="list-inline-item  border border-success">.border-success</li>
+			  <li class="list-inline-item  border border-danger">.border-danger</li>
+			  <li class="list-inline-item  border border-warning">.border-warning</li>
+			  <li class="list-inline-item  border border-info">.border-info</li>
+			  <li class="list-inline-item  border border-light">.border-light</li>
+			  <li class="list-inline-item  border border-dark">.border-dark</li>
+			  <li class="list-inline-item border border-white">.border-white</li>
+		  </ul>
+		  <h6><b>边框圆角：</b></h6>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.rounded</li>
+			  <li class="list-inline-item">.rounded-top</li>
+			  <li class="list-inline-item">.rounded-right</li>
+			  <li class="list-inline-item">.rounded-bottom</li>
+			  <li class="list-inline-item">.rounded-left</li>
+			  <li class="list-inline-item">.rounded-circle</li>
+			  <li class="list-inline-item">.rounded-pill</li>
+			  <li class="list-inline-item">.rounded-0</li>
+		  </ul>
+		  <h4><b class="text-info">清除浮动：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.cleafix</li>
+		  </ul>
+		  <h4><b class="text-info">关闭图标：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.close</li>
+			  <li class="list-inline-item">&amp;times;</li>
+		  </ul>
+		  <h4><b class="text-info">颜色：</b></h4>
+		  <h6><b>文字颜色：</b></h6>
+		  <ul class="text-danger font-weight-bolder list-inline mb-0">
+		  	<li class="list-inline-item text-primary">.text-primary</li>
+			  <li class="list-inline-item text-secondary">.text-secondary</li>
+			  <li class="list-inline-item text-success">.text-success</li>
+			  <li class="list-inline-item text-danger">.text-danger</li>
+			  <li class="list-inline-item text-warning">.text-warning</li>
+			  <li class="list-inline-item text-info">.text-info</li>
+			  <li class="list-inline-item text-light bg-dark">.text-light</li>
+			  <li class="list-inline-item text-dark">.text-dark</li>
+			  <li class="list-inline-item text-muted">.text-muted</li>
+			  <li class="list-inline-item text-white bg-primary">.text-white</li>
+		  </ul>
+		  <p class="mt-0"><mark>注意：</mark> .text-white 、 .text-muted这两个 class样式不支持链接上使用。（链接未定义这两个的对应样式。）</p>
+		  <h6><b>背景颜色：</b></h6>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item text-white bg-primary">.bg-primary</li>
+			  <li class="list-inline-item text-white bg-secondary">.bg-secondary</li>
+			  <li class="list-inline-item text-white bg-success">.bg-success</li>
+			  <li class="list-inline-item text-white bg-danger">.bg-danger</li>
+			  <li class="list-inline-item text-white bg-warning">.bg-warning</li>
+			 <li class="list-inline-item text-white bg-info">.bg-info</li>
+			  <li class="list-inline-item text-dark bg-light">.bg-light</li>
+			  <li class="list-inline-item text-white bg-dark">.bg-dark</li>
+			  <li class="list-inline-item text-dark bg-white">.bg-white</li>
+		  </ul>
+		  <h4><b class="text-info">Display显示属性：</b></h4>
+		  <h6 class="text-danger font-weight-bolder">.d-{breakpoint}-{value}：</h6>
+		  breakpoint的值为：<br/>
+		  <h6 class="text-danger font-weight-bolder">空、sm、md、lg、xl。</h6>
+		  value的值为：<br/>
+		  <h6 class="text-danger font-weight-bolder">none、inline、inline-block、block、table、table-cell、table-row、flex、inline-flex。</h6>
+		  <h6><b>打印的显示属性：</b></h6>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.d-print-none</li>
+			  <li class="list-inline-item">.d-print-inline</li>
+			  <li class="list-inline-item">.d-print-inline-block</li>
+			  <li class="list-inline-item">.d-print-block</li>
+			  <li class="list-inline-item">.d-print-table</li>
+			  <li class="list-inline-item">.d-print-table-row</li>
+			  <li class="list-inline-item">.d-print-table-cell</li>
+			  <li class="list-inline-item">.d-print-flex</li>
+			  <li class="list-inline-item">.d-print-inline-flex</li>
+		  </ul>
+		  <h4><b class="text-info">flex布局：</b></h4>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.d-{}-flex</dt>
+          <dd class="col"></dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.d-{}-inline-flex</dt>
+          <dd class="col"></dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.d-{}-row</dt>
+          <dd class="col">水平方向。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.d-{}-row-reverse</dt>
+          <dd class="col">水平反方向。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.d-{}-column</dt>
+          <dd class="col">垂直方向。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.d-{}-column-reverse</dt>
+          <dd class="col">垂直反方向。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.justify-content-{}-{value}</dt>
+          <dd class="col">主轴对齐。值为：start、end、between、center、around。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.align-items-{}-{value}</dt>
+          <dd class="col">侧轴对齐。值为：start、end、center、baseline、stretch。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.align-self-{}-{value}</dt>
+          <dd class="col">侧轴自对齐。值为：start、end、center、baseline、stretch。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-{}-fill</dt>
+          <dd class="col">自相等。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-{}-grow-*</dt>
+          <dd class="col">有增长的能力。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-{}-shrink-*</dt>
+          <dd class="col">有缩小的能力。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">{m|mt|mb|ml|mr}-auto</dt>
+          <dd class="col">可以用自动外边距来对齐项目。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-{}-wrap</dt>
+          <dd class="col">多行。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-{}-wrap-reverse</dt>
+          <dd class="col">反向多行。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.flex-{}-nowrap</dt>
+          <dd class="col">单行。是默认值。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.order-{}-*</dt>
+          <dd class="col">项目自定义显示顺序。值为1~12。</dd>
+        </dl>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.align-content-{}-{value}</dt>
+          <dd class="col">多行对齐。值为：start、end、center、around、stretch。</dd>
+        </dl>
+		  <h4><b class="text-info">浮动：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.float-{}-left</li>
+			  <li class="list-inline-item">.float-{}-right</li>
+			  <li class="list-inline-item">.float-{}-none</li>
+		  </ul>
+		  <h4><b class="text-info">隐藏文字：</b></h4>
+		  <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3">.text-hide</dt>
+          <dd class="col">通过设置颜色透明、阴影透明来隐藏文字。</dd>
+        </dl>
+		  <h4><b class="text-info">定位：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.position-static</li>
+			  <li class="list-inline-item">.position-relative</li>
+			  <li class="list-inline-item">.position-absolute</li>
+			  <li class="list-inline-item">.position-fixed</li>
+			  <li class="list-inline-item">.position-sticky</li>
+			  <li class="list-inline-item">.fixed-top</li>
+			  <li class="list-inline-item">.fixed-bottom</li>
+			  <li class="list-inline-item">.sticky-top</li>
+		  </ul>
+		  <h4><b class="text-info">盒子阴影：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.shadow-none</li>
+			  <li class="list-inline-item">.shadow-sm</li>
+			  <li class="list-inline-item">.shadow</li>
+			  <li class="list-inline-item">.shadow-lg</li>
+		  </ul>
+		  <h4><b class="text-info">尺寸：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.w-25</li>
+			  <li class="list-inline-item">.w-50</li>
+			  <li class="list-inline-item">.w-75</li>
+			  <li class="list-inline-item">.w-100</li>
+			  <li class="list-inline-item">.w-auto</li>
+		  </ul>
+		  <h4><b class="text-info">边距：</b></h4>
+		  <dl class="row no-gutters mb-2">
+          <dt class="text-danger col-auto pr-3">.{property}{sides}-{breakpoint}-{size}</dt>
+          <dd class="col"></dd>
+        </dl>
+		  <p>
+		  property是下列之一：<br/>
+		  m - 这个Class属性会设定 margin值。<br/>
+p - 这个Class属性会设定 padding值。<br/></p>
+		  <p>sides是下列之一：<br/>
+		  t - 这个Class属性会设定 margin-top 或 padding-top。<br/>
+b - 这个Class属性会设定 margin-bottom 或 padding-bottom。<br/>
+l - 这个Class属性会设定 margin-left 或 padding-left。<br/>
+r - 这个Class属性会设定 margin-right 或 padding-right。<br/>
+x - 这个Class属性会设定 *-left 和 *-right两个值。<br/>
+y - 这个Class属性会设定 *-top 和 *-bottom两个值。<br/>
+空白 - 这个Class属性会设定 margin 或 padding 元素的四个边。<br/>
+		  </p>
+		  <p>size是下列之一：<br/>
+		  0 - 这个Class属性会设定 margin 或 padding 的样式值为 0。<br/>
+1 - (默认时)这个Class属性会设定 margin 或 padding 为0.25rem。<br/>
+2 - (默认时) 这个Class属性会设定 margin 或 padding 为0.5rem。<br/>
+3 - (默认时)这个Class属性会设定 margin 或 padding 为1rem。<br/>
+4 - (默认时) 这个Class属性会设定margin 或 padding 为1.5rem。<br/>
+5 - (默认时)这个Class属性会设定 margin 或 padding 为3rem。<br/>
+			  n1 - 对应1时的负边距。<br/>
+			  n2 - 对应2时的负边距。<br/>
+			  n3 - 对应3时的负边距。<br/>
+			  n4 - 对应4时的负边距。<br/>
+			  n5 - 对应5时的负边距。<br/>
+auto - 这个Class属性会设定 margin 值 auto（按浏览器默认值自由展现）。
+		  </p>
+		  <h4><b class="text-info">文本处理：</b></h4>
+		  <h5>文本对齐：</h5>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.text-{}-left</li>
+			  <li class="list-inline-item">.text-{}-center</li>
+			  <li class="list-inline-item">.text-{}-right</li>
+		  </ul>
+		  <h5>溢出处理：</h5>
+		  <ul class="text-danger font-weight-bolder list-inline mb-0">
+		  	<li class="list-inline-item">.text-nowrap</li>
+			  <li class="list-inline-item">.text-truncate</li>
+		  </ul>
+		  <p>.text-truncate要结合.d-inline-block或.d-block来使用。</p>
+		  <h5>字母大小写转换：</h5>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item">.text-lowercase</li>
+			  <li class="list-inline-item">.text-uppercase</li>
+			  <li class="list-inline-item">.text-capitalize</li>
+		  </ul>
+		  <h5>字体粗细和斜体效果：</h5>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item font-weight-bold">.font-weight-bold</li>
+			  <li class="list-inline-item font-weight-bolder">.font-weight-bolder</li>
+			  <li class="list-inline-item font-weight-normal">.font-weight-normal</li>
+			  <li class="list-inline-item font-weight-light">.font-weight-light</li>
+			  <li class="list-inline-item font-italic">.font-italic</li>
+		  </ul>
+		  <h5>等宽字体：</h5>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item font-weight-bold">.text-monospace</li>
+		  </ul>
+		  <h4><b class="text-info">垂直对齐：</b></h4>
+		  <p>使用 vertical-alignment 通用样式改变元素的对齐，注意：垂直对齐仅影响 内联inline、 内联块inline-block、 内联表inline-table、 表格单元格table cell 元素。</p>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item font-weight-bold">.align-baseline</li>
+			  <li class="list-inline-item font-weight-bold">.align-top</li>
+			  <li class="list-inline-item font-weight-bold">.align-middle</li>
+			  <li class="list-inline-item font-weight-bold">.align-bottom</li>
+			  <li class="list-inline-item font-weight-bold">.align-text-top</li>
+			  <li class="list-inline-item font-weight-bold">.align-text-bottom</li>
+		  </ul>
+		  <h4><b class="text-info">显示或隐藏：</b></h4>
+		  <ul class="text-danger font-weight-bolder list-inline">
+		  	<li class="list-inline-item font-weight-bold">.visible</li>
+			  <li class="list-inline-item font-weight-bold">.invisible</li>
+		  </ul>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="https://code.z01.com/v4/utilities/borders.html" target="_blank">https://code.z01.com/v4/utilities/borders.html</a></blockquote>
+      </footer>
+    </div>
+	<div class="card border-primary mt-2 bg-light">
+      <h4 class="card-header border-primary text-white bg-info"></h4>
+      <div class="card-body">
+        <dl class="row no-gutters  mb-0">
+          <dt class="text-danger col-auto pr-3"></dt>
+          <dd class="col"></dd>
+        </dl>
+      </div>
+      <footer class="card-footer border-primary pb-0">
+        <blockquote>详细文档：<a href="" target="_blank"></a></blockquote>
+      </footer>
+    </div>
+	
+  </div>
+  <div class="col-12 col-md-3 order-1 order-md-2 px-0 position-relative">
+    <nav class="navbar navbar-expand-md navbar-light bg-light align-items-start flex-md-column position-fixed">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse w-100" id="sidebar">
+        <div class="nav flex-column nav-pills w-100" style="max-height: calc(100vh - 1rem); overflow-y: scroll">
+			<a class="nav-item nav-link active" href="#start">开始使用bootstrap4</a>
+			<a class="nav-item nav-link py-1" href="#layout">布局</a>
+			<a class="nav-item nav-link py-1" href="#content">内容</a>
+			<nav class="nav nav-pills flex-column">
+				<a class="nav-item nav-link ml-3 py-1" href="#typography">排版</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#code">代码</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#images">图片</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#tables">表格</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#figures">图文框</a>
+			</nav>
+			<a class="nav-item nav-link py-1" href="#alerts">组件</a>
+			<nav class="nav nav-pills flex-column">
+				<a class="nav-item nav-link ml-3 py-1" href="#alerts">警告提示框</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#badge">徽章</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#breadcrumb">面包屑</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#button">按钮</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#buttongroup">按钮组</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#card">卡片</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#carousel">轮播</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#collapse">折叠面板</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#dropdown">下拉菜单</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#forms">表单</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#inputgroup">输入框</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#jumbotron">大块屏幕</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#listgroup">列表组</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#modal">弹出模态框</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#navs">导航、滑动门</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#navbar">导航栏</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#pagination">分页</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#popovers">POP提示</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#progress">进度条</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#scrollspy">滚动监听</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#spinners">旋转特效</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#toasts">弹出通知框</a>
+				<a class="nav-item nav-link ml-3 py-1" href="#tooltips">冒泡提示</a>
+			</nav>
+			<a class="nav-item nav-link py-1" href="#utilities">公共样式</a>
+			<a class="nav-item nav-link py-1" href="#">Disabled</a>
+			<a class="nav-item nav-link py-1" href="#">Disabled</a>
+		  </div>
+      </div>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

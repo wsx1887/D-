@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>数字输入框组件</title>
+</head>
+
+<body>
+	<div id="app">
+		<input-number v-model="value" v-bind:max="10" v-bind:min="-10"></input-number>
+		
+	</div>
+	<script src="../js/vue2.6.9.js"></script>
+	<script src="input-number.js"></script>
+	
+	<script>
+		Vue.component('input-number',{
+			props:{
+				value:{type:Number,default:0},
+				max:{type:Number,default:Infinity},
+				min:{type:Number,default:-Infinity}
+			},
+			template:`<div class="input-number">
+<input type="text" v-bind:value="currentValue" v-on:change="handleChange"/>
+<button type="button" v-on:click="handleUp" v-bind:disabled="currentValue >=max">+</button>
+<button type="button" v-on:click="handleDown" v-bind:disabled="currentValue<=min">-</button>
+		</div>`,
+			data:function(){
+				return {
+					currentValue:this.value
+				};
+			},
+			watch:{
+				currentValue:function(val,oldVal){
+					this.$emit('input',val);
+				}
+			},
+			methods:{
+				handleDown:function(){
+					this.updateChange(this.currentValue-1);
+				},
+				handleUp:function(){
+					this.updateChange(this.currentValue+1);
+				},
+				updateChange:function(val){
+					var val=Number(val);
+					if(!Number.isNaN(val)){
+						if(val>this.max){
+							this.currentValue=this.max;
+						}
+						else if(val < this.min){
+							this.currentValue=this.min;
+						}
+					}
+				},
+				handleChange:function(event){
+					var val=event.target.value.trim();
+					var val=Number(val);
+					if(!Number.isNaN(val)){
+						this.currentValue=val;
+						if(val>this.max){
+							this.currentValue=this.max;
+						}
+						else if(val < this.min){
+							this.currentValue=this.min;
+						}
+					}
+					else{
+						event.target.value=this.currentValue;
+					}
+				}
+			},
+			mounted:function(){
+				this.updateChange(this.value);
+			}
+		});
+	</script>
+	<script src="index.js"></script>
+</body>
+</html>

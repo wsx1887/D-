@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh"  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>webpack4使用bable7和单文件vue</title>
+    
+</head>
+<body>
+    <div id="content">
+        <h1>webpack4 使用 bable7 和单文件 vue</h1>
+        <h2>使用 webpack4</h2>
+        <h3>安装node:</h3>
+        <p>下载并安装node的LTS（稳定维护版），网址：<a href="https://nodejs.org/">https://nodejs.org/</a>。
+            node自带npm。node --version查看版本。</p>
+        <h3>安装cnpm：</h3>
+        <p>命令：
+            <pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre>
+            cnpm使用的是taobao的镜像。安装后就可以用cnpm代替npm命令,用法和npm一样。
+        </p>
+        <h3>初始化，生成package.json：</h3>
+        <p>新建一个文件夹：demo,打开cmd并引导到此文件夹。运行命令：
+            <pre><code>cnpm init</code></pre>
+            一路回车，最后会在demo文件夹里生成package.json文件。
+        </p>
+        <h3>安装webpack:</h3>
+        <p>如果没有全局安装过webpack，必须先进行一次全局安装，以便在cmd里直接使用webpack命令。
+            <pre><code>cnpm install webpack -g</code></pre>
+            然后再局部安装webpack:
+            <pre><code>cnpm install webpack --save-dev
+cnpm install webpack-cli --save-dev
+cnpm install webpack-dev-server --save-dev</code></pre>
+            webpack-dev-server可以在开发环境中提供启动服务器、热更新、接口代理等。<br />
+            <br />
+            <strong>安装命令说明：<br />
+        </strong><br />
+            cnpm install moduleName 命令<br />
+1. 安装模块到项目node_modules目录下。<br />
+2. 不会将模块依赖写入devDependencies或dependencies 节点。<br />
+3. 运行 npm install 初始化项目时不会下载模块。<br />
+        <br />
+cnpm install -g moduleName 命令<br />
+1. 安装模块到全局，不会在项目node_modules目录中保存模块包。<br />
+2. 不会将模块依赖写入devDependencies或dependencies 节点。<br />
+3. 运行 npm install 初始化项目时不会下载模块。<br />
+        <br />
+cnpm install -save moduleName 命令<br />
+1. 安装模块到项目node_modules目录下。<br />
+2. 会将模块依赖写入dependencies 节点。<br />
+3. 运行 npm install 初始化项目时，会将模块下载到项目目录下。<br />
+4. 运行npm install --production或者注明NODE_ENV变量值为production时，会自动下载模块到node_modules目录中。<br />
+        <br />
+cnpm install -save-dev moduleName 命令<br />
+1. 安装模块到项目node_modules目录下。<br />
+2. 会将模块依赖写入devDependencies 节点。<br />
+3. 运行 npm install 初始化项目时，会将模块下载到项目目录下。<br />
+4. 运行npm install --production或者注明NODE_ENV变量值为production时，不会自动下载模块到node_modules目录中。<br />
+        <br />
+总结：<br />
+devDependencies 节点下的模块是我们在开发时需要用的，比如项目中使用的 gulp ，压缩css、js的模块。这些模块在我们的项目部署后是不需要的，所以我们可以使用 -save-dev 的形式安装。像 express 这些模块是项目运行必备的，应该安装在 dependencies 节点下，所以我们应该使用 -save 的形式安装。
+        </p>
+        <h3>配置webpack：</h3>
+        <p>在 demo 文件夹下创建一个 webpack 的配置文件：webpack.config.js<br />
+            创建一个 main.js 作为入口文件。<br />
+            webpack.config.js 的内容为：
+            <pre><code>
+var path=require('path');
+var config={
+  entry:{
+    main:'./main' //入口文件为 main.js，webpack 从这里开始工作。
+  },
+  output:{
+    //存入打包后的文件。__dirname是指这个文件所在的目录。这里完整的意思是在此js所在的目录建立 dist 目录。
+    path:path.join(__dirname,'./dist'), 
+    publicPath:'/dist/', //资源文件目录。这里可以是网址。
+    filename:'main.js' //打包后存储为的文件名。
+  }
+};
+module.exports=config; //这里不能用 export default config;</code></pre>
+        </p>
+        <h3>配置package.js：</h3>
+        <p>在 scripts 里增加一个快速启动webpack-dev-server服务的脚本：
+            <pre><code>//...
+"scripts": {
+  "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",
+  "dev": "webpack-dev-server --open --config webpack.config.js"
+},
+//...</code></pre>
+            默认的地址是127.0.0.1，也可以自行配置：
+            <pre><code>//...
+"scripts": {
+  "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",
+  "dev": "webpack-dev-server --host 192.168.1.12 --port 8888 --open --config webpack.config.js"
+},
+//...</code></pre>
+        </p>
+        <h3>试运行：</h3>
+        <p>在 demo 下创建HTML文件：index.html。<br />
+            在HTML里面导入main.js（打包后的）
+            <pre><code>&lt;script type="text/javascript" src="/dist/main.js"&gt;&lt;/script&gt;</code></pre>
+            然后就可以在cmd里面运行了：
+            <pre><code>cnpm run dev</code></pre>
+            运行后会自动打开浏览器。<br />
+            此时如果改变 demo/main.js 里的内容，Html 里面的输出也会进行热更新。<br />
+            可以用下面的命令生成打包的文件：
+            <pre><code>webpack --progress --hide-modules</code></pre>
+        </p>
+        <h2>使用 CSS</h2>
+        <h3>开发环境下的CSS使用：</h3>
+        <p>
+            安装 CSS　的加载器：<br />
+            <pre><code>cnpm install css-loader --save-dev
+cnpm install style-loader -save-dev</code></pre>
+            然后在 webpack.config.js 里配置加载器：
+            <pre><code>module:{
+  rules:[
+    {
+      test:/\.css$/,
+      use:[
+        'style-loader',
+        'css-loader'
+      ]
+    }
+  ]
+//其它加载器...
+}</code></pre>
+            use 里面的加载器是从数组后往前使用的。<br />
+        </p>
+        <p>在demo目录下新建一个 CSS 文件：style.css ，并写入 css 内容。在 main.js 里面直接导入此 CSS文件：
+            <pre><code>import './style.css';</code></pre>
+            重新执行 cnpm run dev 就可以看到效果。<br />
+            此时的 css 样式是 JavaScript 创建 
+        &lt;style&gt; 标签来写入的。 
+        </p>
+        <h3>CSS 文件提取：</h3>
+        <p>生产环境中一般都是把各个 CSS 提取出来，合并到一个 CSS 里面，并在 HTML 里面通过 &lt;link&gt; 导入。<br />
+            webpack4 推荐使用 mini-css-extract-plugin，原来的 extract-text-webpack-plugin 只支持到 webpack3 。<br />
+            安装并配置加载器：
+            <pre><code>cnpm install -D mini-css-extract-plugin //-D 是 --save-dev 的缩写。</code></pre>
+            webpack.config.js 部分配置：
+            <pre><code>
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+module:{
+  rules:[
+    {
+      test:/\.css$/,
+      use:[
+        MiniCssExtractPlugin.loader,
+        'css-loader'
+      ]
+    }
+  ]
+//其它加载器...
+}
+plugins:[
+  new MiniCssExtractPlugin({filename: 'main.css'}) //打包成 main.css文件。
+]
+                 </code></pre>
+            在 HTML 里面导入 CSS 文件。
+            <pre>&lt;link rel=&quot;stylesheet&quot; href=&quot;/dist/main.css&quot; /&gt;</pre>
+        </p>
+        <h2>Vue 单文件组件和 babel 7：</h2>
+        <p>安装 Vue 和 babel 7:
+            <pre><code>cnpm install -D vue-loader vue-template-compiler
+cnpm install --save-dev babel-loader @babel/core @babel/cli @babel/preset-env
+cnpm install --save-dev @babel/plugin-transform-runtime
+cnpm install --save @babel/runtime</code></pre>
+            webpack.config.js 部分配置：
+            <pre><code>const VueLoaderPlugin = require('vue-loader/lib/plugin'); //和其它loader不一样
+module: {
+  rules: [
+    // ... 其它规则
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader'
+    },
+    {
+      test:/\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/ //排除文件夹
+    }
+  ]
+},
+plugins: [
+    // 请确保引入这个插件！
+    new VueLoaderPlugin()
+]</code></pre>
+            在 demo 下新建一个 js 文件 babel.config.js 用来配置 babel 。内容为：
+            <pre><code>module.exports = function (api) {
+  api.cache(true);
+  const presets = [
+    [
+      "@babel/env", {
+        targets: {
+          edge: "17",
+          firefox: "60",
+          chrome: "67",
+          safari: "11.1",
+          ie: "9"
+        },
+        useBuiltIns: "usage" //polyfill将按需使用。
+      }
+    ]
+  ];
+  const plugins = [
+    [
+      "@babel/plugin-transform-runtime", {
+        "absoluteRuntime": false,
+        "corejs": false,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false
+      }
+    ]
+  ];
+  return {
+    presets,
+    plugins
+  };
+}</code></pre>
+            接下来就是创建 Vue 文件了。
+        </p>
+        <p>在 demo 下创建 app.vue 和 button.vue ，内容分别为：
+            <pre><code>//app.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;div id="app"&gt; {{name}}&lt;/div&gt;
+    &lt;v-button v-on:click="handleClick"&gt;CLICK&lt;/v-button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  import vButton from './button.vue';
+  export default {
+    data() {
+      return {
+        name:'wsx ggg'
+      }
+    },
+    components: {
+      vButton
+    },
+    methods: {
+      handleClick(e) {
+        console.log(e);
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;style scoped&gt;
+  div{
+    color:red;
+    font-size:24px;
+  }
+&lt;/style&gt;</code></pre>
+            <pre><code>//button.vue
+&lt;template&gt;
+  &lt;button v-on:click="handleClick" v-bind:style="styles"&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/button&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    props: {
+      color: {
+        type: String,
+        default: '#00cc66'
+      }
+    },
+    computed: {
+      styles() {
+        return {
+          background: this.color
+        }
+      }
+    },
+    methods: {
+      handleClick(e) {
+        this.$emit('click', e);
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;style scoped&gt;
+  button{
+     border:0;
+     outline:none;
+     color:#fff;
+     padding:4px 8px;
+  }
+  button:active{
+    position:relative;
+    top:1px;
+    left:1px;
+  }
+&lt;/style&gt;</code></pre>
+            运行 cnpm run dev。
+        </p>
+        <h2>用于生产环境</h2>
+        <p>
+           安装依赖：
+            <pre><code>cnpm install -D url-loader file-loader
+cnpm install -D webpack-merge html-webpack-plugin
+//webpack-merge 用于配置文件的合并
+//html-webpack-plugin 用于动态生成 HTML，一般是动态替换 CSS 和 JS 文件。</code></pre>
+            修改webpack.config.js文件：
+            <pre><code>{
+  test: /\.(gif|jpg|jpeg|png|woff|svg|eot|ttf)$/,
+  loader: 'url-loader?limit=1024'
+}</code></pre>
+            这样vue组件里引用的文件会被打包到 mydist 目录中，里面的引用地址也会被自动改变。<br />
+            修改package.json文件：
+            <pre><code>"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "webpack-dev-server --open --config webpack.config.js",
+  "build": "webpack --mode production --progress --hide-modules --config webpack.prod.config.js"
+}</code></pre>
+            在demo目录下建立一个用于生产的配置文件webpack.prod.config.js
+            <pre><code>var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlwebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+var webpackBaseConfig = require('./webpack.config.js');
+
+//清空插件
+webpackBaseConfig.plugins = [];
+module.exports = merge(webpackBaseConfig, {
+  output: {
+    publicPath: './mydist/',
+    filename:'[name].[chunkhash].js'
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+    
+    new HtmlwebpackPlugin({
+      filename: '../index.prod.html',
+      template: './index.html',
+      inject:false
+    })
+  ],
+  optimization: {
+    minimize: true
+  }
+});</code></pre>
+            把index.html里的引用地址分别改为：
+            <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%= htmlWebpackPlugin.files.css[0] %&gt;&quot; /&gt;
+&lt;script src=&quot;&lt;%= htmlWebpackPlugin.files.js[0] %&gt;&quot;&gt; &lt;/script&gt;</code></pre>
+            最后运行 cnpm run build 打包。
+        </p>
+    </div>
+
+</body>
+</html>
