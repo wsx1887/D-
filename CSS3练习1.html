@@ -4,15 +4,40 @@
 
 <style type="text/css">
 body
-{ 
-			backbround-position:center center;
-background-image: url(images/QQ%E6%88%AA%E5%9B%BE20180822211505.png);
+{height: 100%;
+    margin: 0;
+    padding: 0;
 }
+    body{
+        display: flex;
+    }
+    #left{
+        width: 33%;
+        height: 100%;
+        background-color: red;
+        text-align: center;
+    }
 </style>
 
 </head>
 
 <body>
-
+<div id="left">1</div>
+    <div id="main">2</div>
+    <div id="right">3</div>
+    <script>
+    window.onload=function(){
+        var onmessage = function(e) {
+       var data = e.data,p = document.createElement('p');
+	   p.innerHTML = data;
+       document.getElementById('display').appendChild(p);
+    };
+        if (typeof window.addEventListener != 'undefined') {
+      window.addEventListener('message', onmessage, false);
+    } else if (typeof window.attachEvent != 'undefined') {
+      window.attachEvent('onmessage', onmessage);
+    }
+    }
+    </script>
 </body>
 </html>
