@@ -8,25 +8,26 @@
   <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
   <title>vue-demo</title>
   <style>
-      
     body {
-      background-color: #333;
+      background-color: rgba(53,53,53,1.00);
       margin: 0%;
       padding: 0%;
       box-sizing: border-box;
-        font-family: "Algerian" ,"华文中宋","sans-serif";
+      font-family: "Algerian", "华文中宋", "sans-serif";
     }
-  .main {
+
+    .main {
       position: relative;
     }
+
     .icon {
       font-size: 30em;
       color: #FBB500;
       text-shadow: 0 0 4px white, 0 5px 4px #ff3, 2px 10px 10px #fd3, -2px 15px 15px #f80, 2px 25px 25px #FF5B42;
       transform: scale(1, -1);
       text-align: center;
-        height: 1.2em;
-        line-height: 1.2em;
+      height: 1.2em;
+      line-height: 1.2em;
     }
 
     .main a {
@@ -36,48 +37,133 @@
       background-color: #FBD46F;
       padding: .75em 1em;
       border-radius: 1.4em;
-      width: 9em;
+      width: 7em;
       text-align: center;
       color: #257000;
-       font-family: "微软雅黑";
-        position: absolute;
-        
-      
+      font-family: "微软雅黑";
+      position: absolute;
+		transition: all .4s ;
     }
-      .main a:nth-of-type(1)  {
-          top:9em;
-          top: calc(50% - 15em + 6em);
-          left: calc(50% - 9em - 15em);
+
+    .css {
+      top: calc(50% - 15em + 6em);
+      left: calc(50% - 7em - 15em);
+    }
+
+    .js {
+      top: calc(50% - 15em + 14em);
+      left: calc(50% - 7em - 15em + 3em);
+    }
+
+    .vue {
+      top: calc(50% - 15em + 22em);
+      left: calc(50% - 7em - 15em + 5em);
+    }
+
+    .x4 {
+      top: calc(50% - 15em + 6em);
+      right: calc(50% - 7em - 15em);
+    }
+
+    .bootstrap {
+      top: calc(50% - 15em + 14em);
+      right: calc(50% - 7em - 15em + 3em);
+    }
+
+    .tools {
+      top: calc(50% - 15em + 22em);
+      right: calc(50% - 7em - 15em + 5em);
+    }
+    @keyframes css {
+      from {
+        left: -9em;
       }
-      .main a:nth-of-type(2)  {
-          top:17em;
-          top: calc(50% - 15em + 14em);
-          left: calc(50% - 9em - 15em + 3em);
+
+      to {
+        left: calc(50% - 7em - 15em);
       }
-      .main a:nth-of-type(3)  {
-          top:25em;
-          top: calc(50% - 15em + 22em);
-          left: calc(50% - 9em - 15em + 5em);
+    }
+
+    @keyframes js {
+      from {
+        left: -9em;
       }
-      .main a:nth-of-type(4)  {
-          top:9em;
-          top: calc(50% - 15em + 6em);
-          right: calc(50% - 9em - 15em);
+
+      to {
+        left: calc(50% - 7em - 15em + 3em);
       }
-      .main a:nth-of-type(5)  {
-          top:17em;
-          top: calc(50% - 15em + 14em);
-          right: calc(50% - 9em - 15em + 3em);
+    }
+
+    @keyframes vue {
+      from {
+        left: -9em;
       }
-      .main a:nth-of-type(6)  {
-          top:25em;
-           top: calc(50% - 15em + 22em);
-          right: calc(50% - 9em - 15em + 5em);
+
+      to {
+        left: calc(50% - 7em - 15em + 5em);
       }
+    }
+
+    @keyframes x4 {
+      from {
+        right: -9em;
+      }
+
+      to {
+        right: calc(50% - 7em - 15em);
+      }
+    }
+
+    @keyframes bootstrap {
+      from {
+        right: -9em;
+      }
+
+      to {
+        right: calc(50% - 7em - 15em + 3em);
+      }
+    }
+
+    @keyframes tools {
+      from {
+        right: -9em;
+      }
+
+      to {
+        right: calc(50% - 7em - 15em + 5em);
+      }
+    }
+
+    .css {
+      animation: css .3s linear forwards;
+    }
+
+    .js {
+      animation: js .3s linear forwards;
+    }
+
+    .vue {
+      animation: vue .3s linear forwards;
+    }
+
+    .x4 {
+      animation: x4 .3s linear forwards;
+    }
+
+    .bootstrap {
+      animation: bootstrap .3s linear forwards;
+    }
+
+    .tools {
+      animation: tools .3s linear forwards;
+    } 
   </style>
 </head>
 
 <body>
+	<!--[if IE]>
+<p>12331</p>
+	  <![endif]-->
   <noscript>
     <strong>本网页需要 JavaScript 才能运行，请开启 JavaScript 后刷新重试。</strong>
   </noscript>
@@ -85,9 +171,9 @@
   <!-- built files will be auto injected -->
   <div class="main">
     <div class="icon">A</div>
-    <a href="" class="css">CSS 练习</a>
-    <a href="" class="js">JS 练习</a> <a href="" class="vue">VUE 练习</a> <a href="" class="x4">X4 工厂计算器</a> <a href=""
-      class="bootstrap">bootstrap 4 练习</a> <a href="" class="tools">工具</a>
+    <a href="" class="css">CSS</a>
+    <a href="" class="js">JS</a> <a href="" class="vue">VUE</a> <a href="" class="x4">X4 工厂计算器</a> <a href=""
+      class="bootstrap">bootstrap 4</a> <a href="" class="tools">工具</a>
   </div>
 </body>
 
