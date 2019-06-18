@@ -42,7 +42,7 @@
       color: #257000;
       font-family: "微软雅黑";
       position: absolute;
-		transition: all .4s ;
+        transform: translate3d(0,0,0);
     }
 
     .css {
@@ -156,7 +156,24 @@
 
     .tools {
       animation: tools .3s linear forwards;
-    } 
+    }
+      .light-container{
+          background-color: darkgoldenrod;
+          height: 10em;
+          width: 100%;
+          position: relative;
+          top: -7.9em;
+          text-align: center;
+           overflow: hidden;
+      }
+      .light{
+          height: 100%;
+          width: 1em;
+          background-color: #FBB500;
+          margin:0 auto;
+          position: relative;
+          transform: translate3d(0,0,0);
+      }
   </style>
 </head>
 
@@ -175,6 +192,9 @@
     <a href="" class="js">JS</a> <a href="" class="vue">VUE</a> <a href="" class="x4">X4 工厂计算器</a> <a href=""
       class="bootstrap">bootstrap 4</a> <a href="" class="tools">工具</a>
   </div>
+    <div class="light-container">
+          <div class="light"></div>
+      </div>
 </body>
 
 </html>
