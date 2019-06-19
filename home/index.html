@@ -13,7 +13,7 @@
       margin: 0%;
       padding: 0%;
       box-sizing: border-box;
-      font-family: "Algerian", "华文中宋", "sans-serif";
+      font-family: "微软雅黑", "华文中宋", "sans-serif";
     }
 
     .main {
@@ -28,6 +28,7 @@
       text-align: center;
       height: 1.2em;
       line-height: 1.2em;
+        font-family: "Algerian"
     }
 
     .main a {
@@ -40,7 +41,6 @@
       width: 7em;
       text-align: center;
       color: #257000;
-      font-family: "微软雅黑";
       position: absolute;
         transform: translate3d(0,0,0);
     }
@@ -161,18 +161,30 @@
           background-color: darkgoldenrod;
           height: 10em;
           width: 100%;
-          position: relative;
-          top: -7.9em;
-          text-align: center;
+          margin-top: -7.9em;
            overflow: hidden;
       }
       .light{
           height: 100%;
-          width: 1em;
+          width: .5em;
           background-color: #FBB500;
+          background-image: linear-gradient(to right,white,#FBB500 50%,white);
           margin:0 auto;
           position: relative;
           transform: translate3d(0,0,0);
+      }
+      .mail{
+          text-align: center;
+      }
+      .mail a{
+          display: inline-block;
+          padding: .5em;
+          background-color: #FBD46F;
+          border-radius: 1em;
+          text-decoration: none;
+          color: #257000;
+          transition: all .5;
+          box-shadow: 0 0 1px 8px #FBD46F;
       }
   </style>
 </head>
@@ -195,6 +207,7 @@
     <div class="light-container">
           <div class="light"></div>
       </div>
+    <div class="mail"><a href="mailto:wsx1887@qq.com">联系方式：wsx1887@qq.com</a></div>
 </body>
 
 </html>
