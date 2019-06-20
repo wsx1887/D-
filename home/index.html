@@ -1,213 +1,179 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-
-<head>
+  <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
   <title>vue-demo</title>
   <style>
-    body {
-      background-color: rgba(53,53,53,1.00);
-      margin: 0%;
-      padding: 0%;
-      box-sizing: border-box;
-      font-family: "微软雅黑", "华文中宋", "sans-serif";
-    }
+body {
+    background-color: rgba(53,53,53,1.00);
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "微软雅黑", "华文中宋", "sans-serif";
+}
+.main {
+    position: relative;
+}
+.icon {
+    font-size: 30em;
+    color: #FBB500;
+    text-shadow: 0 0 4px white, 0 5px 4px #ff3, 2px 10px 10px #fd3, -2px 15px 15px #f80, 2px 25px 25px #FF5B42;
+    transform: scale(1, -1);
+    text-align: center;
+    height: 1.2em;
+    line-height: 1.2em;
+    font-family: "Algerian"
+}
+.main a {
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+    background-color: #FBD46F;
+    padding: .75em 1em;
+    border-radius: 1.4em;
+    width: 7em;
+    text-align: center;
+    color: #257000;
+    position: absolute;
+    transform: translate3d(0, 0, 0);
+}
+.css {
+    top: calc(50% - 15em + 6em);
+    left: calc(50% - 7em - 15em);
+    animation: css .3s linear forwards;
+}
+.js {
+    top: calc(50% - 15em + 14em);
+    left: calc(50% - 7em - 15em + 3em);
+    animation: js .3s linear forwards;
+}
+.vue {
+    top: calc(50% - 15em + 22em);
+    left: calc(50% - 7em - 15em + 5em);
+    animation: vue .3s linear forwards;
+}
+.x4 {
+    top: calc(50% - 15em + 6em);
+    right: calc(50% - 7em - 15em);
+    animation: x4 .3s linear forwards;
+}
+.bootstrap {
+    top: calc(50% - 15em + 14em);
+    right: calc(50% - 7em - 15em + 3em);
+    animation: bootstrap .3s linear forwards;
+}
+.tools {
+    top: calc(50% - 15em + 22em);
+    right: calc(50% - 7em - 15em + 5em);
+    animation: tools .3s linear forwards;
+}
+ @keyframes css {
+ from {
+ left: -9em;
+}
+ to {
+ left: calc(50% - 7em - 15em);
+}
+}
+ @keyframes js {
+ from {
+ left: -9em;
+}
+ to {
+ left: calc(50% - 7em - 15em + 3em);
+}
+}
+ @keyframes vue {
+ from {
+ left: -9em;
+}
+ to {
+ left: calc(50% - 7em - 15em + 5em);
+}
+}
+ @keyframes x4 {
+ from {
+ right: -9em;
+}
+ to {
+ right: calc(50% - 7em - 15em);
+}
+}
+ @keyframes bootstrap {
+ from {
+ right: -9em;
+}
+ to {
+ right: calc(50% - 7em - 15em + 3em);
+}
+}
+ @keyframes tools {
+ from {
+ right: -9em;
+}
+ to {
+ right: calc(50% - 7em - 15em + 5em);
+}
+}
+.mail {
+    text-align: center;
+}
+.mail a {
+    display: inline-block;
+    padding: .5em;
+    background-color: #FBD46F;
+    border-radius: 1em;
+    text-decoration: none;
+    color: #257000;
+    transition: all 1.5;
+    /*box-shadow: 0 0 1px 8px #FBD46F;*/
+    position: relative;
+    z-index: 2;
+}
+.mail a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 1em;
+    z-index: -1;
+    background-color: #FBD46F;
+    transform: translate3d(0, 0, 0);
+    animation: power 4s linear infinite;
+}
+ @keyframes power {
+     30%{
+         transform: scale(1.15,2);
+ opacity: 0;
+     }
+ 30.000001% {
+ transform: scale(1);
+ opacity: 1;
+}
+}
+</style>
+  </head>
 
-    .main {
-      position: relative;
-    }
-
-    .icon {
-      font-size: 30em;
-      color: #FBB500;
-      text-shadow: 0 0 4px white, 0 5px 4px #ff3, 2px 10px 10px #fd3, -2px 15px 15px #f80, 2px 25px 25px #FF5B42;
-      transform: scale(1, -1);
-      text-align: center;
-      height: 1.2em;
-      line-height: 1.2em;
-        font-family: "Algerian"
-    }
-
-    .main a {
-      text-decoration: none;
-      display: block;
-      font-weight: 600;
-      background-color: #FBD46F;
-      padding: .75em 1em;
-      border-radius: 1.4em;
-      width: 7em;
-      text-align: center;
-      color: #257000;
-      position: absolute;
-        transform: translate3d(0,0,0);
-    }
-
-    .css {
-      top: calc(50% - 15em + 6em);
-      left: calc(50% - 7em - 15em);
-    }
-
-    .js {
-      top: calc(50% - 15em + 14em);
-      left: calc(50% - 7em - 15em + 3em);
-    }
-
-    .vue {
-      top: calc(50% - 15em + 22em);
-      left: calc(50% - 7em - 15em + 5em);
-    }
-
-    .x4 {
-      top: calc(50% - 15em + 6em);
-      right: calc(50% - 7em - 15em);
-    }
-
-    .bootstrap {
-      top: calc(50% - 15em + 14em);
-      right: calc(50% - 7em - 15em + 3em);
-    }
-
-    .tools {
-      top: calc(50% - 15em + 22em);
-      right: calc(50% - 7em - 15em + 5em);
-    }
-    @keyframes css {
-      from {
-        left: -9em;
-      }
-
-      to {
-        left: calc(50% - 7em - 15em);
-      }
-    }
-
-    @keyframes js {
-      from {
-        left: -9em;
-      }
-
-      to {
-        left: calc(50% - 7em - 15em + 3em);
-      }
-    }
-
-    @keyframes vue {
-      from {
-        left: -9em;
-      }
-
-      to {
-        left: calc(50% - 7em - 15em + 5em);
-      }
-    }
-
-    @keyframes x4 {
-      from {
-        right: -9em;
-      }
-
-      to {
-        right: calc(50% - 7em - 15em);
-      }
-    }
-
-    @keyframes bootstrap {
-      from {
-        right: -9em;
-      }
-
-      to {
-        right: calc(50% - 7em - 15em + 3em);
-      }
-    }
-
-    @keyframes tools {
-      from {
-        right: -9em;
-      }
-
-      to {
-        right: calc(50% - 7em - 15em + 5em);
-      }
-    }
-
-    .css {
-      animation: css .3s linear forwards;
-    }
-
-    .js {
-      animation: js .3s linear forwards;
-    }
-
-    .vue {
-      animation: vue .3s linear forwards;
-    }
-
-    .x4 {
-      animation: x4 .3s linear forwards;
-    }
-
-    .bootstrap {
-      animation: bootstrap .3s linear forwards;
-    }
-
-    .tools {
-      animation: tools .3s linear forwards;
-    }
-      .light-container{
-          background-color: darkgoldenrod;
-          height: 10em;
-          width: 100%;
-          margin-top: -7.9em;
-           overflow: hidden;
-      }
-      .light{
-          height: 100%;
-          width: .5em;
-          background-color: #FBB500;
-          background-image: linear-gradient(to right,white,#FBB500 50%,white);
-          margin:0 auto;
-          position: relative;
-          transform: translate3d(0,0,0);
-      }
-      .mail{
-          text-align: center;
-      }
-      .mail a{
-          display: inline-block;
-          padding: .5em;
-          background-color: #FBD46F;
-          border-radius: 1em;
-          text-decoration: none;
-          color: #257000;
-          transition: all .5;
-          box-shadow: 0 0 1px 8px #FBD46F;
-      }
-  </style>
-</head>
-
-<body>
-	<!--[if IE]>
+  <body>
+<!--[if IE]>
 <p>12331</p>
 	  <![endif]-->
-  <noscript>
-    <strong>本网页需要 JavaScript 才能运行，请开启 JavaScript 后刷新重试。</strong>
+<noscript>
+  <strong>本网页需要 JavaScript 才能运行，请开启 JavaScript 后刷新重试。</strong>
   </noscript>
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-  <div class="main">
+<div id="app">
+<!-- built files will be auto injected -->
+<div class="main">
     <div class="icon">A</div>
-    <a href="" class="css">CSS</a>
-    <a href="" class="js">JS</a> <a href="" class="vue">VUE</a> <a href="" class="x4">X4 工厂计算器</a> <a href=""
-      class="bootstrap">bootstrap 4</a> <a href="" class="tools">工具</a>
-  </div>
-    <div class="light-container">
-          <div class="light"></div>
-      </div>
-    <div class="mail"><a href="mailto:wsx1887@qq.com">联系方式：wsx1887@qq.com</a></div>
+    <a href="" class="css">CSS</a> <a href="" class="js">JS</a> <a href="" class="vue">VUE</a> <a href="" class="x4">X4 工厂计算器</a> <a href=""
+      class="bootstrap">bootstrap 4</a> <a href="" class="tools">工具</a> </div>
+<div class="mail"><a href="mailto:wsx1887@qq.com">联系方式：wsx1887@qq.com</a></div>
+</div>
 </body>
-
 </html>
