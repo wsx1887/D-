@@ -5,12 +5,15 @@
 	<meta charset="utf-8">
 	<title>文字阴影</title>
 	<style>
-		#testshadow {
+		#textshadow {
 			text-align: center;
 			font-family: "tahoma", "verdana", "arial", "宋体", "sans-serif";
-			font-size: 5em;
 		}
-
+        #textshadow>div{
+            font-size: 5em;
+            width: 7em;
+            margin: 0 auto;
+        }
 		#single span {
 			display: block;
 		}
@@ -82,13 +85,14 @@
 			background: #cccccc;
 			text-shadow: 0 0 0.2em #f87,
 				0 0 0.2em #f87;
-			background:
+			background:#111;
 		}
 	</style>
 </head>
 
 <body>
-	<div id="testshadow">
+	<div id="textshadow">
+        <h1>文字阴影</h1>
 		<div id="burn">
 			燃烧的文字
 		</div>
