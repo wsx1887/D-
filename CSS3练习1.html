@@ -3,28 +3,30 @@
 <head>
 
 <style type="text/css">
-body
-{height: 100%;
-    margin: 0;
-    padding: 0;
-}
-    body{
-        display: flex;
+    .message-contain{
+        
     }
-    #left{
-        width: 33%;
-        height: 100%;
-        background-color: red;
-        text-align: center;
+    div{
+        display:inline-block;
     }
 </style>
 
 </head>
 
 <body>
-<div id="left">1</div>
-    <div id="main">2</div>
-    <div id="right">3</div>
+<div class="message-contain">
+        <diWv class="sending-message">
+            <span class="row">
+                <span class="attach-name">邮件主题</span>
+                <div class="sending">发送状态</div>
+            </span>
+            <div class="row">
+                <div class="attach-name">元素不会建立一个新的本地堆叠上下文。当前堆叠上下文</div>
+                <div class="sending">正在发送</div>
+            </div>
+            <button style="margin-top: 1em;">关闭</button>
+        </div>
+        </div>
     <script>
     window.onload=function(){
         var onmessage = function(e) {

@@ -1,24 +1,45 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
 <head>
-<meta charset="utf-8">
-<title>无标题文档</title>
-<style>
-    .arrow{
-      border-left: .5em solid transparent;
-    border-right: .5em solid transparent;
-    border-top: .7em solid #999;
-    border-bottom: 0;
-}
-        
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>无标题文档</title>
+  <style>
+      *{
+          box-sizing: border-box;
+      }
+     body{
+            padding: 0;
+            margin: 0;
+        }
+      .main{
+          width: 400px;
+          height: 400px;
+          background-color: aquamarine;
+      }
+      .a{
+          width: 200px;
+          height: 300px;
+          background: rgba(139,233,97,0.80);
+          display: inline-block;
+      }
+      .b{
+          width: 20px;
+          height: 100px;
+          background-color: red;
+          display: inline-block;
+          margin-left: -50%;
+          outline: solid 1px rgba(0,146,179,1.00);
+      }
+  </style>
 </head>
 
 <body>
-    <span class="arrow"></span>
-    <script>
-    
-    </script>
+   <div class="main">
+       <div class="a"></div><div class="b"></div>
+    </div>
 </body>
+
 </html>
